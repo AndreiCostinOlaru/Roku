@@ -14,6 +14,7 @@ sub Main()
 
     'Create a scene and load /components/helloworld.xml'
     scene = screen.CreateScene("HelloWorld")
+    scene.backgroundUri = "pkg:/images/Dragon.jpg"
     screen.show()
 
     while(true)
