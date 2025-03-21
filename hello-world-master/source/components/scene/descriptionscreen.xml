@@ -12,12 +12,13 @@
       height = "1080" />
     <Label 
     id="description"
-    height="44"
-    width="0"
+    height="500"
+    width="1720"
     font="font:MediumBoldSystemFont"
     text = ""
     horizAlign = "left"
     vertAlign = "center"
-    translation="[100,500]"/>
+    translation="[100,500]"
+    wrap = "true"/>
   </children>
 </component>

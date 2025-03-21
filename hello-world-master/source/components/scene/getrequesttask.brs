@@ -7,10 +7,10 @@ sub getData()
     json = executeGetRequest("https://my-json-server.typicode.com/bogdanterzea/pokemon-server/photos")
     listRoot = CreateObject("roSGNode","ContentNode")
     row = CreateObject("roSGNode","ContentNode")
+    row2 = CreateObject("roSGNode","ContentNode")
     row.TITLE = "Pokemons"
     for each item in json
         rowChild = CreateObject("roSGNode","itemContentNode")
-        ? item
         rowChild.id = item.id
         rowChild.title = item.title
         rowChild.url = item.url
@@ -20,7 +20,7 @@ sub getData()
         row.appendChild(rowChild)
     end for
     
-    listRoot.appendChild(row) 'duplicate?
+    listRoot.appendChild(row)
     m.top.itemContent = listRoot
 end sub
 
