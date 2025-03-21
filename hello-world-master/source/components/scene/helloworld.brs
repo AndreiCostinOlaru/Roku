@@ -28,9 +28,6 @@ function onKeyEvent(key as String, press as Boolean) as Boolean
             handled = true
             m.imageRowList.setFocus(true)
       else if (key ="back") then
-        ? "back"
-        ? m.newScreen
-        ? m.top.findNode("descriptionScreen")
         m.newScreen.visible = false
         handled = true
       end if
