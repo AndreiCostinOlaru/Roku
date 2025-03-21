@@ -42,5 +42,5 @@ end sub
 
 sub onRowItemSelected(event)
   data =event.getData()
-  ? data[1]
+  ? Substitute("Item Id: {0}", data[1].toStr())
 end sub
