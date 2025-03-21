@@ -3,6 +3,7 @@ sub init()
     m.button = m.top.findNode("button")
     showImage()
     m.imageRowList.setFocus(true)
+    m.button.observeField("buttonSelected", "onButtonSelected")
 end sub
 
 sub showImage()
@@ -21,12 +22,19 @@ end sub
 function onKeyEvent(key as String, press as Boolean) as Boolean
     handled = false
     if press then
-      if (key = "down") then
+      if (key = "down" and m.imageRowList.hasFocus()) then
+        handled = true
         m.button.setFocus(true)
       else 
-        if (key = "up") then
+        if (key = "up" and m.button.hasFocus()) then
+            handled = true
             m.imageRowList.setFocus(true)
         end if
       end if
     end if
+    return handled
 end function
+
+sub onButtonSelected()
+  ? "Button selected."
+end sub
