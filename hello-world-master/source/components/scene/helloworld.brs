@@ -7,6 +7,9 @@ sub init()
     m.getRequestTask = CreateObject("roSGNode", "GetPokemonDataTask")
     m.getRequestTask.ObserveField("itemContent", "onFetchData")
 	  m.getRequestTask.control = "RUN"
+    m.newScreen = CreateObject("roSGNode", "DescriptionScreen")
+    m.newScreen.visible = false
+    m.top.appendChild(m.newScreen)
 end sub
 
 
@@ -28,7 +31,7 @@ function onKeyEvent(key as String, press as Boolean) as Boolean
         ? "back"
         ? m.newScreen
         ? m.top.findNode("descriptionScreen")
-        m.top.removeChild(m.newScreen)
+        m.newScreen.visible = false
         handled = true
       end if
     end if
@@ -40,9 +43,11 @@ sub onButtonSelected()
 end sub
 
 sub onRowItemSelected(event)
+  ' TODO: all screens list
+  ' 
   data =event.getData()
-  newScreen = CreateObject("roSGNode", "DescriptionScreen")
-  newScreen.content = m.imageRowList.content.getChild(data[0]).getChild(data[1])
-  m.newScreen = newScreen
-  m.top.appendChild(newScreen)
+  ' newScreen = CreateObject("roSGNode", "DescriptionScreen")
+  m.newScreen.content = m.imageRowList.content.getChild(data[0]).getChild(data[1])
+  ' m.newScreen = newScreen
+  m.newScreen.visible = true
 end sub
