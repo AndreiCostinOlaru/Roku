@@ -4,6 +4,7 @@ sub init()
     showImage()
     m.imageRowList.setFocus(true)
     m.button.observeField("buttonSelected", "onButtonSelected")
+    m.imageRowList.observeField("rowItemSelected", "onRowItemSelected")
 end sub
 
 sub showImage()
@@ -37,4 +38,9 @@ end function
 
 sub onButtonSelected()
   ? "Button selected."
+end sub
+
+sub onRowItemSelected(event)
+  data =event.getData()
+  ? data[1]
 end sub
