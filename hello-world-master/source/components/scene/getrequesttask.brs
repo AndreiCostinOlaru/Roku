@@ -9,7 +9,8 @@ sub getData()
     row = CreateObject("roSGNode","ContentNode")
     row.TITLE = "Pokemons"
     for each item in json
-        rowChild = CreateObject("roSGNode","ContentNode")
+        rowChild = CreateObject("roSGNode","itemContentNode")
+        ? item
         rowChild.id = item.id
         rowChild.title = item.title
         rowChild.url = item.url
