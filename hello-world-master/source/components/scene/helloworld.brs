@@ -1,15 +1,15 @@
 sub init()
-    m.imageRowList = m.top.findNode("imageRowList")
-    m.button = m.top.findNode("button")
-    m.imageRowList.setFocus(true)
-    m.button.observeField("buttonSelected", "onButtonSelected")
-    m.imageRowList.observeField("rowItemSelected", "onRowItemSelected")
-    m.getPokemonDataTask = CreateObject("roSGNode", "GetPokemonDataTask")
-    m.getPokemonDataTask.ObserveField("itemContent", "onFetchPokemonData")
-	  m.getPokemonDataTask.control = "RUN"
-    m.getVideoData = CreateObject("roSGNode", "GetVideoDataTask")
-    m.getVideoData.ObserveField("itemContent", "onFetchVideoData")
-	  m.getVideoData.control = "RUN"
+  m.imageRowList = m.top.findNode("imageRowList")
+  m.button = m.top.findNode("button")
+  m.imageRowList.setFocus(true)
+  m.button.observeField("buttonSelected", "onButtonSelected")
+  m.imageRowList.observeField("rowItemSelected", "onRowItemSelected")
+  m.getPokemonDataTask = CreateObject("roSGNode", "GetPokemonDataTask")
+  m.getPokemonDataTask.ObserveField("itemContent", "onFetchPokemonData")
+  m.getPokemonDataTask.control = "RUN"
+  m.getVideoData = CreateObject("roSGNode", "GetVideoDataTask")
+  m.getVideoData.ObserveField("itemContent", "onFetchVideoData")
+  m.getVideoData.control = "RUN"
 end sub
 
 
