@@ -1,7 +1,7 @@
 <?xml version = "1.0" encoding = "utf-8" ?>
  
 <component name = "RowListItem" extends = "Group" >
-
+  <script type="text/brightscript" uri="rowlistitem.brs"/>
   <interface>
     <field id = "itemContent" type = "node" onChange = "showcontent"/>
   </interface>
@@ -11,5 +11,4 @@
       width = "450" 
       height = "308" />
   </children>
-<script type="text/brightscript" uri="rowlistitem.brs"/>
 </component>

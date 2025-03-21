@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
+
 <component name="HelloWorld" extends="Scene"> 
+  <script type="text/brightscript" uri="helloworld.brs"/>
 	<children>
      <RowList id = "imageRowList" 
       itemComponentName = "RowListItem"
@@ -18,5 +20,4 @@
      minWidth = "120" 
      height = "120"/>
   </children>
-<script type="text/brightscript" uri="helloworld.brs"/>s
 </component>
