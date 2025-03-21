@@ -43,11 +43,7 @@ sub onButtonSelected()
 end sub
 
 sub onRowItemSelected(event)
-  ' TODO: all screens list
-  ' 
   data =event.getData()
-  ' newScreen = CreateObject("roSGNode", "DescriptionScreen")
   m.newScreen.content = m.imageRowList.content.getChild(data[0]).getChild(data[1])
-  ' m.newScreen = newScreen
   m.newScreen.visible = true
 end sub
