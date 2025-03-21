@@ -4,6 +4,5 @@ end sub
 
 sub showcontent(event)
  data = event.getData()
- ? data
  m.poster.uri = data.fhdposterurl
 end sub
