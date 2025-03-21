@@ -11,6 +11,7 @@
       rowItemSize = "[ [450, 260] ]" 
       rowItemSpacing = "[ [40, 0]]" 
       rowFocusAnimationStyle = "fixedFocusWrap"
+      showRowLabel = "[true]"
       />
     <Button
      id = "button"
