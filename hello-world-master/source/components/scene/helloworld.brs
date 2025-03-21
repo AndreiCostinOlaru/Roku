@@ -21,11 +21,15 @@ function onKeyEvent(key as String, press as Boolean) as Boolean
       if (key = "down" and m.imageRowList.hasFocus()) then
         handled = true
         m.button.setFocus(true)
-      else 
-        if (key = "up" and m.button.hasFocus()) then
+      else if (key = "up" and m.button.hasFocus()) then
             handled = true
             m.imageRowList.setFocus(true)
-        end if
+      else if (key ="back") then
+        ? "back"
+        ? m.newScreen
+        ? m.top.findNode("descriptionScreen")
+        m.top.removeChild(m.newScreen)
+        handled = true
       end if
     end if
     return handled
@@ -37,5 +41,8 @@ end sub
 
 sub onRowItemSelected(event)
   data =event.getData()
-  ? Substitute("Item Id: {0}", data[1].toStr())
+  newScreen = CreateObject("roSGNode", "DescriptionScreen")
+  newScreen.content = m.imageRowList.content.getChild(data[0]).getChild(data[1])
+  m.newScreen = newScreen
+  m.top.appendChild(newScreen)
 end sub

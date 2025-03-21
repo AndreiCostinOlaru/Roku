@@ -1,0 +1,23 @@
+<?xml version = "1.0" encoding = "utf-8" ?>
+ 
+<component name = "DescriptionScreen" extends = "Group">
+  <script type="text/brightscript" uri="descriptionscreen.brs"/>
+   <interface>
+    <field id = "content" type = "node" onChange = "showcontent"/>
+  </interface>
+  <children >
+    <Poster 
+      id = "itemPoster" 
+      width = "1920" 
+      height = "1080" />
+    <Label 
+    id="description"
+    height="44"
+    width="0"
+    font="font:MediumBoldSystemFont"
+    text = ""
+    horizAlign = "left"
+    vertAlign = "center"
+    translation="[318,8]"/>
+  </children>
+</component>
