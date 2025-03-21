@@ -1,24 +1,22 @@
 sub init()
     m.imageRowList = m.top.findNode("imageRowList")
     m.button = m.top.findNode("button")
-    showImage()
     m.imageRowList.setFocus(true)
     m.button.observeField("buttonSelected", "onButtonSelected")
     m.imageRowList.observeField("rowItemSelected", "onRowItemSelected")
+    m.getRequestTask = CreateObject("roSGNode", "GetRequestTask")
+    m.getRequestTask.ObserveField("itemContent", "onFetchData")
+	  m.getRequestTask.control = "RUN"
+    m.newScreen = CreateObject("roSGNode", "DescriptionScreen")
+    m.newScreen.visible = false
+    m.top.appendChild(m.newScreen)
 end sub
 
-sub showImage()
-    listRoot = CreateObject("roSGNode","ContentNode")
-    row = CreateObject("roSGNode","ContentNode")
-    for i = 1 to 5 
-        rowChild = CreateObject("roSGNode","ContentNode")
-        rowChild.FHDPosterUrl = Substitute("pkg:/images/item{0}.jpg",i.toStr())
-        row.appendChild(rowChild)
-    end for
-    
-    listRoot.appendChild(row)
-    m.imageRowList.content = listRoot
+
+sub onFetchData() as void
+  m.imageRowList.content =  m.getRequestTask.itemcontent
 end sub
+
 
 function onKeyEvent(key as String, press as Boolean) as Boolean
     handled = false
@@ -26,11 +24,12 @@ function onKeyEvent(key as String, press as Boolean) as Boolean
       if (key = "down" and m.imageRowList.hasFocus()) then
         handled = true
         m.button.setFocus(true)
-      else 
-        if (key = "up" and m.button.hasFocus()) then
+      else if (key = "up" and m.button.hasFocus()) then
             handled = true
             m.imageRowList.setFocus(true)
-        end if
+      else if (key ="back") then
+        m.newScreen.visible = false
+        handled = true
       end if
     end if
     return handled
@@ -42,5 +41,6 @@ end sub
 
 sub onRowItemSelected(event)
   data =event.getData()
-  ? Substitute("Item Id: {0}", data[1].toStr())
+  m.newScreen.content = m.imageRowList.content.getChild(data[0]).getChild(data[1])
+  m.newScreen.visible = true
 end sub
