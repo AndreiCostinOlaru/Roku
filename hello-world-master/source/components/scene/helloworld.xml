@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<component name="HelloWorld" extends="Scene"> 
+  <script type="text/brightscript" uri="helloworld.brs"/>
+	<children>
+     <RowList id = "imageRowList" 
+      itemComponentName = "RowListItem"
+      translation = "[0,386]"
+      numRows = "1"
+      itemSize = "[ 1920, 308 ]" 
+      rowItemSize = "[ [450, 260] ]" 
+      rowItemSpacing = "[ [40, 0]]" 
+      rowFocusAnimationStyle = "fixedFocusWrap"
+      />
+    <Button
+     id = "button"
+     translation ="[0,960]"
+     text = "ok"
+     showFocusFootprint = "true"
+     minWidth = "120" 
+     height = "120"/>
+  </children>
+</component>
