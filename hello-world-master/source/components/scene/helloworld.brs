@@ -23,6 +23,7 @@ end sub
 
 
 function onKeyEvent(key as String, press as Boolean) as Boolean
+<<<<<<< HEAD
   handled = false
   if press then
     if (key = "down" and m.imageRowList.hasFocus()) then
@@ -34,6 +35,23 @@ function onKeyEvent(key as String, press as Boolean) as Boolean
     else if (key ="back") then
       m.newScreen.visible = false
       handled = true
+=======
+    handled = false
+    if press then
+      if (key = "down" and m.imageRowList.hasFocus()) then
+        handled = true
+        m.button.setFocus(true)
+      else if (key = "up" and m.button.hasFocus()) then
+            handled = true
+            m.imageRowList.setFocus(true)
+      else if (key ="back") then
+        ? "back"
+        ? m.newScreen
+        ? m.top.findNode("descriptionScreen")
+        m.top.removeChild(m.newScreen)
+        handled = true
+      end if
+>>>>>>> 8c17f4b (New screen with description and background)
     end if
   end if
   return handled
