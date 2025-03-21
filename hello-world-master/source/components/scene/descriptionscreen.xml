@@ -18,6 +18,6 @@
     text = ""
     horizAlign = "left"
     vertAlign = "center"
-    translation="[318,8]"/>
+    translation="[100,500]"/>
   </children>
 </component>
