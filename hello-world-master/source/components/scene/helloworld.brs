@@ -16,17 +16,17 @@ end sub
 
 
 function onKeyEvent(key as String, press as Boolean) as Boolean
-    handled = false
-    if press then
-      if (key = "down" and m.imageRowList.hasFocus()) then
-        handled = true
-        m.button.setFocus(true)
-      else if (key = "up" and m.button.hasFocus()) then
-            handled = true
-            m.imageRowList.setFocus(true)
-      end if
+  handled = false
+  if press then
+    if (key = "down" and m.imageRowList.hasFocus()) then
+      handled = true
+      m.button.setFocus(true)
+    else if (key = "up" and m.button.hasFocus()) then
+          handled = true
+          m.imageRowList.setFocus(true)
     end if
-    return handled
+  end if
+  return handled
 end function
 
 sub onButtonSelected()
