@@ -19,12 +19,12 @@ sub getData()
         rowChild.FHDPOSTERURL = item.url
         row.appendChild(rowChild)
     end for
-    
+
     listRoot.appendChild(row)
     m.top.itemContent = listRoot
 end sub
 
-function executeGetRequest(url) 
+function executeGetRequest(url as String) as Object
     port = CreateObject("roMessagePort")
     request = CreateObject("roUrlTransfer")
     request.setMessagePort(port)

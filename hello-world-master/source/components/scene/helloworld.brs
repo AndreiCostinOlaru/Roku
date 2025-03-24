@@ -1,32 +1,32 @@
 sub init()
-    m.imageRowList = m.top.findNode("imageRowList")
-    m.button = m.top.findNode("button")
-    m.imageRowList.setFocus(true)
-    m.button.observeField("buttonSelected", "onButtonSelected")
-    m.imageRowList.observeField("rowItemSelected", "onRowItemSelected")
-    m.getRequestTask = CreateObject("roSGNode", "GetRequestTask")
-    m.getRequestTask.ObserveField("itemContent", "onFetchData")
-	  m.getRequestTask.control = "RUN"
+  m.imageRowList = m.top.findNode("imageRowList")
+  m.button = m.top.findNode("button")
+  m.imageRowList.setFocus(true)
+  m.button.observeField("buttonSelected", "onButtonSelected")
+  m.imageRowList.observeField("rowItemSelected", "onRowItemSelected")
+  m.getRequestTask = CreateObject("roSGNode", "GetRequestTask")
+  m.getRequestTask.ObserveField("itemContent", "onFetchData")
+  m.getRequestTask.control = "RUN"
 end sub
 
 
-sub onFetchData() as void
-  m.imageRowList.content =  m.getRequestTask.itemcontent
+sub onFetchData(event as Object)
+  m.imageRowList.content =  event.getData()
 end sub
 
 
 function onKeyEvent(key as String, press as Boolean) as Boolean
-    handled = false
-    if press then
-      if (key = "down" and m.imageRowList.hasFocus()) then
-        handled = true
-        m.button.setFocus(true)
-      else if (key = "up" and m.button.hasFocus()) then
-            handled = true
-            m.imageRowList.setFocus(true)
-      end if
+  handled = false
+  if press then
+    if (key = "down" and m.imageRowList.hasFocus()) then
+      handled = true
+      m.button.setFocus(true)
+    else if (key = "up" and m.button.hasFocus()) then
+          handled = true
+          m.imageRowList.setFocus(true)
     end if
-    return handled
+  end if
+  return handled
 end function
 
 sub onButtonSelected()
