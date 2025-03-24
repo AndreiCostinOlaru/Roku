@@ -8,3 +8,15 @@ sub showcontent(event)
  m.poster.uri = data.image_1080_url
  m.label.text = data.description
 end sub
+
+
+function onKeyEvent(key as String, press as Boolean) as Boolean
+    handled = false
+    if press then
+        if (key ="back") then
+            m.top.backTrigger = true
+            handled = true
+        end if
+    end if
+    return handled
+end function

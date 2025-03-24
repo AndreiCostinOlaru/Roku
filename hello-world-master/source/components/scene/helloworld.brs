@@ -40,7 +40,6 @@ sub onButtonSelected()
   navigateToVideoScreen(m.videoData)
 end sub
 
-
 sub onRowItemSelected(event as Object)
   data =event.getData()
   screenContent = m.imageRowList.content.getChild(data[0]).getChild(data[1])
