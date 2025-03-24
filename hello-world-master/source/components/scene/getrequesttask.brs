@@ -4,11 +4,11 @@ end sub
 
 
 sub getData()
-    json = executeGetRequest("https://my-json-server.typicode.com/bogdanterzea/pokemon-server/photos")
+    pokemonPhotoJson = executeGetRequest("https://my-json-server.typicode.com/bogdanterzea/pokemon-server/photos")
     listRoot = CreateObject("roSGNode","ContentNode")
     row = CreateObject("roSGNode","ContentNode")
     row.TITLE = "Pokemons"
-    for each item in json
+    for each item in pokemonPhotoJson
         rowChild = CreateObject("roSGNode","ContentNode")
         rowChild.id = item.id
         rowChild.title = item.title
@@ -19,11 +19,11 @@ sub getData()
         row.appendChild(rowChild)
     end for
     
-    listRoot.appendChild(row) 'duplicate?
+    listRoot.appendChild(row)
     m.top.itemContent = listRoot
 end sub
 
-function executeGetRequest(url) 
+function executeGetRequest(url as String) as Object
     port = CreateObject("roMessagePort")
     request = CreateObject("roUrlTransfer")
     request.setMessagePort(port)
