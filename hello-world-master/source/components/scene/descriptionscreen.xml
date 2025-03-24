@@ -1,24 +1,24 @@
 <?xml version = "1.0" encoding = "utf-8" ?>
  
-<component name = "DescriptionScreen" extends = "Group">
+<component name="DescriptionScreen" extends="Group">
   <script type="text/brightscript" uri="descriptionscreen.brs"/>
-   <interface>
-    <field id = "content" type = "node" onChange = "showcontent"/>
+  <interface>
+    <field id="content" type="node" onChange="showcontent"/>
     <field id="backTrigger" type="boolean" value="false"/>
   </interface>
   <children >
     <Poster 
-      id = "itemPoster" 
-      width = "1920" 
-      height = "1080" />
+      id="itemPoster" 
+      width="1920" 
+      height="1080" />
     <Label 
-    id="description"
-    height="500"
-    width="1720"
-    font="font:MediumBoldSystemFont"
-    horizAlign = "left"
-    vertAlign = "center"
-    translation="[100,500]"
-    wrap = "true"/>
+      id="description"
+      height="500"
+      width="1720"
+      font="font:MediumBoldSystemFont"
+      horizAlign = "left"
+      vertAlign = "center"
+      translation="[100,500]"
+      wrap = "true"/>
   </children>
 </component>
