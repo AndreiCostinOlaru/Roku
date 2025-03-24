@@ -7,9 +7,6 @@ sub init()
     m.getRequestTask = CreateObject("roSGNode", "GetPokemonDataTask")
     m.getRequestTask.ObserveField("itemContent", "onFetchData")
 	  m.getRequestTask.control = "RUN"
-    m.newScreen = CreateObject("roSGNode", "DescriptionScreen")
-    m.newScreen.visible = false
-    m.top.appendChild(m.newScreen)
 end sub
 
 
