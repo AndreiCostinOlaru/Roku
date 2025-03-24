@@ -1,0 +1,15 @@
+<?xml version = "1.0" encoding = "utf-8" ?>
+ 
+<component name="VideoScreen" extends="Group">
+  <script type="text/brightscript" uri="videoscreen.brs"/>
+  <interface>
+    <field id="content" type="node" onChange="showcontent"/>
+    <field id="backTrigger" type="boolean" value="false"/>
+  </interface>
+  <children >
+    <Video 
+      id="video" 
+      width="1920" 
+      height="1080" />
+  </children>
+</component>

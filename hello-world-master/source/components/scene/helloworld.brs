@@ -21,7 +21,7 @@ sub onFetchPokemonData()
 end sub
 
 sub onFetchVideoData()
-  m.getVideoData.itemcontent = m.getVideoData.itemcontent
+  m.videoData = m.getVideoData.itemcontent
 end sub
 
 
@@ -43,6 +43,9 @@ function onKeyEvent(key as String, press as Boolean) as Boolean
 end function
 
 sub onButtonSelected()
+  m.newVideoScreen = CreateObject("roSGNode", "DescriptionScreen")
+  m.newVideoScreen = m.videoData
+  m.top.appendChild(m.newVideoScreen)
   ? "Button selected."
 end sub
 
