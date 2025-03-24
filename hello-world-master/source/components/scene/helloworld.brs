@@ -13,8 +13,8 @@ sub init()
 end sub
 
 
-sub onFetchPokemonData()
-  m.imageRowList.content =  m.getPokemonDataTask.itemcontent
+sub onFetchData(event as Object)
+  m.imageRowList.content =  event.getData()
 end sub
 
 sub onFetchVideoData(event as Object)
