@@ -10,11 +10,18 @@ sub init()
     m.newScreen = CreateObject("roSGNode", "DescriptionScreen")
     m.newScreen.visible = false
     m.top.appendChild(m.newScreen)
+    m.getVideoData = CreateObject("roSGNode", "GetVideoDataTask")
+    m.getVideoData.ObserveField("itemContent", "onFetchVideoData")
+	  m.getVideoData.control = "RUN"
 end sub
 
 
-sub onFetchPokemonData() as void
+sub onFetchPokemonData()
   m.imageRowList.content =  m.getPokemonDataTask.itemcontent
+end sub
+
+sub onFetchVideoData()
+  m.getVideoData.itemcontent = m.getVideoData.itemcontent
 end sub
 
 
