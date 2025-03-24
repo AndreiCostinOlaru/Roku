@@ -10,8 +10,8 @@ sub init()
 end sub
 
 
-sub onFetchData() as void
-  m.imageRowList.content =  m.getRequestTask.itemcontent
+sub onFetchData(event as Object)
+  m.imageRowList.content =  event.getData()
 end sub
 
 
