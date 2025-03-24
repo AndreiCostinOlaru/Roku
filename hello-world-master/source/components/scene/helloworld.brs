@@ -7,9 +7,6 @@ sub init()
     m.getRequestTask = CreateObject("roSGNode", "GetRequestTask")
     m.getRequestTask.ObserveField("itemContent", "onFetchData")
 	  m.getRequestTask.control = "RUN"
-    m.newScreen = CreateObject("roSGNode", "DescriptionScreen")
-    m.newScreen.visible = false
-    m.top.appendChild(m.newScreen)
 end sub
 
 
@@ -27,9 +24,6 @@ function onKeyEvent(key as String, press as Boolean) as Boolean
       else if (key = "up" and m.button.hasFocus()) then
             handled = true
             m.imageRowList.setFocus(true)
-      else if (key ="back") then
-        m.newScreen.visible = false
-        handled = true
       end if
     end if
     return handled
@@ -39,8 +33,21 @@ sub onButtonSelected()
   ? "Button selected."
 end sub
 
-sub onRowItemSelected(event)
+sub onRowItemSelected(event as Object)
   data =event.getData()
-  m.newScreen.content = m.imageRowList.content.getChild(data[0]).getChild(data[1])
-  m.newScreen.visible = true
+  screenContent = m.imageRowList.content.getChild(data[0]).getChild(data[1])
+  navigateToDescriptionScreen(screenContent)
+end sub
+
+sub navigateToDescriptionScreen(screenContent as Object)
+  m.newScreen = CreateObject("roSGNode", "DescriptionScreen")
+  m.newScreen.content = screenContent
+  m.newScreen.ObserveField("backTrigger", "onBackFromDescriptionScreen")
+  m.top.appendChild(m.newScreen)
+  m.newScreen.setFocus(true)
+end sub
+
+sub onBackFromDescriptionScreen()
+  m.top.removeChild(m.newScreen)
+  m.imageRowList.setFocus(true)
 end sub
