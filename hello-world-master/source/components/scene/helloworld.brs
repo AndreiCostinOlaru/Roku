@@ -4,7 +4,7 @@ sub init()
     m.imageRowList.setFocus(true)
     m.button.observeField("buttonSelected", "onButtonSelected")
     m.imageRowList.observeField("rowItemSelected", "onRowItemSelected")
-    m.getRequestTask = CreateObject("roSGNode", "GetRequestTask")
+    m.getRequestTask = CreateObject("roSGNode", "GetPokemonDataTask")
     m.getRequestTask.ObserveField("itemContent", "onFetchData")
 	  m.getRequestTask.control = "RUN"
 end sub
