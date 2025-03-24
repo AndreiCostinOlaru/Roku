@@ -1,12 +1,12 @@
 sub init()
-  m.imageRowList = m.top.findNode("imageRowList")
-  m.button = m.top.findNode("button")
-  m.imageRowList.setFocus(true)
-  m.button.observeField("buttonSelected", "onButtonSelected")
-  m.imageRowList.observeField("rowItemSelected", "onRowItemSelected")
-  m.getRequestTask = CreateObject("roSGNode", "GetRequestTask")
-  m.getRequestTask.ObserveField("itemContent", "onFetchData")
-  m.getRequestTask.control = "RUN"
+    m.imageRowList = m.top.findNode("imageRowList")
+    m.button = m.top.findNode("button")
+    m.imageRowList.setFocus(true)
+    m.button.observeField("buttonSelected", "onButtonSelected")
+    m.imageRowList.observeField("rowItemSelected", "onRowItemSelected")
+    m.getRequestTask = CreateObject("roSGNode", "GetPokemonDataTask")
+    m.getRequestTask.ObserveField("itemContent", "onFetchData")
+	  m.getRequestTask.control = "RUN"
 end sub
 
 
