@@ -20,8 +20,8 @@ sub onFetchPokemonData()
   m.imageRowList.content =  m.getPokemonDataTask.itemcontent
 end sub
 
-sub onFetchVideoData()
-  m.videoData = m.getVideoData.itemcontent
+sub onFetchVideoData(event as Object)
+  m.videoData = event.getData()
 end sub
 
 
@@ -43,14 +43,34 @@ function onKeyEvent(key as String, press as Boolean) as Boolean
 end function
 
 sub onButtonSelected()
-  m.newVideoScreen = CreateObject("roSGNode", "DescriptionScreen")
-  m.newVideoScreen = m.videoData
+  m.newVideoScreen = CreateObject("roSGNode", "VideoScreen")
+  m.newVideoScreen.content = m.videoData
+  m.newVideoScreen.ObserveField("backVideoTrigger", "onBackFromVideoScreen")
   m.top.appendChild(m.newVideoScreen)
-  ? "Button selected."
+  m.newVideoScreen.setFocus(true)
 end sub
 
-sub onRowItemSelected(event)
+
+sub onRowItemSelected(event as Object)
   data =event.getData()
-  m.newScreen.content = m.imageRowList.content.getChild(data[0]).getChild(data[1])
-  m.newScreen.visible = true
+  screenContent = m.imageRowList.content.getChild(data[0]).getChild(data[1])
+  navigateToDescriptionScreen(screenContent)
+end sub
+
+sub navigateToDescriptionScreen(screenContent as Object)
+  m.newScreen = CreateObject("roSGNode", "DescriptionScreen")
+  m.newScreen.content = screenContent
+  m.newScreen.ObserveField("backTrigger", "onBackFromDescriptionScreen")
+  m.top.appendChild(m.newScreen)
+  m.newScreen.setFocus(true)
+end sub
+
+sub onBackFromDescriptionScreen()
+  m.top.removeChild(m.newScreen)
+  m.imageRowList.setFocus(true)
+end sub
+
+sub onBackFromVideoScreen()
+  m.top.removeChild(m.newVideoScreen)
+  m.button.setFocus(true)
 end sub

@@ -4,7 +4,7 @@
   <script type="text/brightscript" uri="videoscreen.brs"/>
   <interface>
     <field id="content" type="node" onChange="showcontent"/>
-    <field id="backTrigger" type="boolean" value="false"/>
+    <field id="backVideoTrigger" type="boolean" value="false"/>
   </interface>
   <children >
     <Video 
