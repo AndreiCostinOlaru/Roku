@@ -4,13 +4,13 @@ end sub
 
 
 sub getData()
-    json = executeGetRequest("https://my-json-server.typicode.com/bogdanterzea/pokemon-server/photos")
+    pokemonPhotoJson = executeGetRequest("https://my-json-server.typicode.com/bogdanterzea/pokemon-server/photos")
     listRoot = CreateObject("roSGNode","ContentNode")
     row = CreateObject("roSGNode","ContentNode")
     row2 = CreateObject("roSGNode","ContentNode")
     row.TITLE = "Pokemons"
-    for each item in json
-        rowChild = CreateObject("roSGNode","itemContentNode")
+    for each item in pokemonPhotoJson
+        rowChild = CreateObject("roSGNode","ContentNode")
         rowChild.id = item.id
         rowChild.title = item.title
         rowChild.url = item.url
@@ -19,7 +19,7 @@ sub getData()
         rowChild.FHDPOSTERURL = item.url
         row.appendChild(rowChild)
     end for
-
+    
     listRoot.appendChild(row)
     m.top.itemContent = listRoot
 end sub
