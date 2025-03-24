@@ -6,19 +6,7 @@ end sub
 sub getData()
     pokemonPhotoJson = executeGetRequest("https://my-json-server.typicode.com/bogdanterzea/pokemon-server/photos")
     listRoot = CreateObject("roSGNode","ContentNode")
-    row = CreateObject("roSGNode","ContentNode")
-    row.TITLE = "Pokemons"
-    for each item in pokemonPhotoJson   
-        rowChild = CreateObject("roSGNode","itemContentNode")
-        rowChild.id = item.id
-        rowChild.title = item.title
-        rowChild.url = item.url
-        rowChild.image_1080_url = item.image_1080_url
-        rowChild.description = item.description
-        rowChild.FHDPOSTERURL = item.url
-        row.appendChild(rowChild)
-    end for
-    
+    row = populateRowItems(pokemonPhotoJson)
     listRoot.appendChild(row)
     m.top.itemContent = listRoot
 end sub
@@ -43,4 +31,21 @@ function executeGetRequest(url as String) as Object
             end if
         end while
     end if
+end function
+
+
+function populateRowItems(pokemonPhotoJson as Object) as Object
+    row = CreateObject("roSGNode","ContentNode")
+    row.TITLE = "Pokemons"
+    for each item in pokemonPhotoJson
+        rowChild = CreateObject("roSGNode","ContentNode")
+        rowChild.id = item.id
+        rowChild.title = item.title
+        rowChild.url = item.url
+        rowChild.image_1080_url = item.image_1080_url
+        rowChild.description = item.description
+        rowChild.FHDPOSTERURL = item.url
+        row.appendChild(rowChild)
+    end for
+    return row
 end function
