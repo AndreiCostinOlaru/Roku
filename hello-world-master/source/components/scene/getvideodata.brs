@@ -8,7 +8,7 @@ sub getData()
     m.top.itemContent = populateItemContent(videoDataJson[0])
 end sub
 
-function executeGetRequest(url) 
+function executeGetRequest(url as String) as Object
     port = CreateObject("roMessagePort")
     request = CreateObject("roUrlTransfer")
     request.setMessagePort(port)
