@@ -12,7 +12,7 @@ sub init()
   m.getVideoData.control = "RUN"
 end sub
 
-sub onFetchData(event as Object)
+sub onFetchPokemonData(event as Object)
   m.imageRowList.content =  event.getData()
 end sub
 
