@@ -36,7 +36,7 @@ function populateRowItems(pokemonPhotoJson as Object) as Object
     row = CreateObject("roSGNode","ContentNode")
     row.TITLE = "Pokemons"
     for each item in pokemonPhotoJson
-        rowChild = CreateObject("roSGNode","ContentNode")
+        rowChild = CreateObject("roSGNode","itemContentNode")
         rowChild.id = item.id
         rowChild.title = item.title
         rowChild.url = item.url
