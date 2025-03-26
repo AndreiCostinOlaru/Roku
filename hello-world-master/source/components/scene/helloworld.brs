@@ -7,9 +7,6 @@ sub init()
     m.getPokemonDataTask = CreateObject("roSGNode", "GetPokemonDataTask")
     m.getPokemonDataTask.ObserveField("itemContent", "onFetchPokemonData")
 	  m.getPokemonDataTask.control = "RUN"
-    m.newScreen = CreateObject("roSGNode", "DescriptionScreen")
-    m.newScreen.visible = false
-    m.top.appendChild(m.newScreen)
     m.getVideoData = CreateObject("roSGNode", "GetVideoDataTask")
     m.getVideoData.ObserveField("itemContent", "onFetchVideoData")
 	  m.getVideoData.control = "RUN"
@@ -26,28 +23,24 @@ end sub
 
 
 function onKeyEvent(key as String, press as Boolean) as Boolean
-    handled = false
-    if press then
-      if (key = "down" and m.imageRowList.hasFocus()) then
-        handled = true
-        m.button.setFocus(true)
-      else if (key = "up" and m.button.hasFocus()) then
-            handled = true
-            m.imageRowList.setFocus(true)
-      else if (key ="back") then
-        m.newScreen.visible = false
-        handled = true
-      end if
+  handled = false
+  if press then
+    if (key = "down" and m.imageRowList.hasFocus()) then
+      handled = true
+      m.button.setFocus(true)
+    else if (key = "up" and m.button.hasFocus()) then
+          handled = true
+          m.imageRowList.setFocus(true)
+    else if (key ="back") then
+      m.newScreen.visible = false
+      handled = true
     end if
-    return handled
+  end if
+  return handled
 end function
 
 sub onButtonSelected()
-  m.newVideoScreen = CreateObject("roSGNode", "VideoScreen")
-  m.newVideoScreen.content = m.videoData
-  m.newVideoScreen.ObserveField("backVideoTrigger", "onBackFromVideoScreen")
-  m.top.appendChild(m.newVideoScreen)
-  m.newVideoScreen.setFocus(true)
+  navigateToVideoScreen(m.videoData)
 end sub
 
 
@@ -68,6 +61,14 @@ end sub
 sub onBackFromDescriptionScreen()
   m.top.removeChild(m.newScreen)
   m.imageRowList.setFocus(true)
+end sub
+
+sub navigateToVideoScreen(screenContent as Object)
+  m.newVideoScreen = CreateObject("roSGNode", "VideoScreen")
+  m.newVideoScreen.content = screenContent
+  m.newVideoScreen.ObserveField("backVideoTrigger", "onBackFromVideoScreen")
+  m.top.appendChild(m.newVideoScreen)
+  m.newVideoScreen.setFocus(true)
 end sub
 
 sub onBackFromVideoScreen()

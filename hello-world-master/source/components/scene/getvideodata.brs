@@ -10,10 +10,9 @@ sub getData()
     itemContent.id = videoData.id
     itemContent.title = videoData.title
     itemContent.FHDPosterUrl = videoData.poster
-    'itemContent.url = videoData.stream.url
-    'itemContent.streamformat = videoData.stream.format
-    itemContent.streamformat = "mp4"
-    itemContent.url = "https://roku-webdev-opus.s3.amazonaws.com/public-videos/big+stream+trimmed.mp4"
+    itemContent.url = videoData.stream.url 'does not work
+    itemContent.streamformat = videoData.stream.format
+    itemContent.url = "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8" 'placeholder
     itemContent.description = videoData.description
     m.top.itemContent = itemContent
 end sub

@@ -18,7 +18,7 @@ sub getData()
         rowChild.FHDPOSTERURL = item.url
         row.appendChild(rowChild)
     end for
-    
+
     listRoot.appendChild(row)
     m.top.itemContent = listRoot
 end sub
