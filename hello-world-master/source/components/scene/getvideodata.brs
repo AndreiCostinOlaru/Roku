@@ -6,12 +6,15 @@ end sub
 sub getData()
     videoDataJson = executeGetRequest("https://my-json-server.typicode.com/bogdanterzea/pokemon-server/videos")
     itemContent = CreateObject("roSGNode","ContentNode")
-    itemContent.id = videoDataJson[0].id
-    itemContent.title = videoDataJson[0].title
-    itemContent.FHDPosterUrl = videoDataJson[0].poster
-    itemContent.url = videoDataJson[0].stream.url
-    itemContent.streamformat = videoDataJson[0].stream.format
-    itemContent.title = videoDataJson[0].description
+    videoData = videoDataJson[0]
+    itemContent.id = videoData.id
+    itemContent.title = videoData.title
+    itemContent.FHDPosterUrl = videoData.poster
+    'itemContent.url = videoData.stream.url
+    'itemContent.streamformat = videoData.stream.format
+    itemContent.streamformat = "mp4"
+    itemContent.url = "https://roku-webdev-opus.s3.amazonaws.com/public-videos/big+stream+trimmed.mp4"
+    itemContent.description = videoData.description
     m.top.itemContent = itemContent
 end sub
 
