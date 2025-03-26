@@ -16,9 +16,9 @@
       height="500"
       width="1720"
       font="font:MediumBoldSystemFont"
-      horizAlign = "left"
-      vertAlign = "center"
+      horizAlign="left"
+      vertAlign="center"
       translation="[100,500]"
-      wrap = "true"/>
+      wrap="true"/>
   </children>
 </component>
