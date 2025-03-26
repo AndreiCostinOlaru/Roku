@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?> 
 
 <component name="GetPokemonDataTask" extends="Task">
-<script type="text/brightscript" uri="getpokemandatatask.brs" />
-
-<interface>
+  <script type="text/brightscript" uri="getpokemandatatask.brs" />
+  <interface>
     <field id="itemContent" type="node"/>
-</interface>
+  </interface>
 </component>
