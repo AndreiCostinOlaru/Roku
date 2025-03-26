@@ -1,15 +1,12 @@
 sub init()
-    m.imageRowList = m.top.findNode("imageRowList")
-    m.button = m.top.findNode("button")
-    m.imageRowList.setFocus(true)
-    m.button.observeField("buttonSelected", "onButtonSelected")
-    m.imageRowList.observeField("rowItemSelected", "onRowItemSelected")
-    m.getRequestTask = CreateObject("roSGNode", "GetPokemonDataTask")
-    m.getRequestTask.ObserveField("itemContent", "onFetchData")
-	  m.getRequestTask.control = "RUN"
-    m.newScreen = CreateObject("roSGNode", "DescriptionScreen")
-    m.newScreen.visible = false
-    m.top.appendChild(m.newScreen)
+  m.imageRowList = m.top.findNode("imageRowList")
+  m.button = m.top.findNode("button")
+  m.imageRowList.setFocus(true)
+  m.button.observeField("buttonSelected", "onButtonSelected")
+  m.imageRowList.observeField("rowItemSelected", "onRowItemSelected")
+  m.getPokemonData = CreateObject("roSGNode", "GetPokemonDataTask")
+  m.getPokemonData.ObserveField("itemContent", "onFetchData")
+  m.getPokemonData.control = "RUN"
 end sub
 
 
