@@ -4,21 +4,30 @@
   <script type="text/brightscript" uri="markupgriditem.brs"/>
   <interface>
     <field id="itemContent" type="node" onChange="showcontent"/>
+    <field id="focusPercent" type="float" onChange="showfocus"/> 
   </interface>
   <children >
     <Poster 
       id="itemPoster" 
+      translation="[25, 0]"
       width="450" 
       height="308" 
     />
     <Label 
       id="itemName"
       font="font:MediumBoldSystemFont"
-      translation = "[0, 308]"
+      translation="[180, 308]"
       horizAlign="center"
       vertAlign="center"
       height="50"
       font="font:MediumBoldSystemFont"
+    />
+    <Rectangle 
+      id="itemMask" 
+      width="500" 
+      height="360"
+      color="0x000000FF" 
+      opacity="0.50"  
     />
   </children>
 </component>
