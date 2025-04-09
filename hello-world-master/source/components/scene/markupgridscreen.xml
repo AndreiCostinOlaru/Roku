@@ -18,7 +18,7 @@
       numColumns="3" 
       numRows="3" 
       itemSize="[ 500, 340 ]" 
-      itemSpacing="[ 20, 20 ]" 
+      itemSpacing="[ 20, 40 ]" 
       drawFocusFeedback="false" />
   </children>
 </component>

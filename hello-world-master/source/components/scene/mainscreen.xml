@@ -6,13 +6,14 @@
     <RowList 
       id="imageRowList" 
       itemComponentName="RowListItem"
-      translation="[0,386]"
+      translation="[20,386]"
       numRows="1"
       itemSize="[ 1920, 308 ]" 
       rowItemSize="[ [450, 260] ]" 
       rowItemSpacing="[ [40, 0]]" 
       rowFocusAnimationStyle="fixedFocusWrap"
       showRowLabel="[true]"
+      rowLabelOffset="[[0, 20]]"
     />
     <Button
       id="button"
