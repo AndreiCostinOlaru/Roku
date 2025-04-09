@@ -22,5 +22,13 @@
       minWidth="120" 
       height="120"
     />
+    <Button
+      id="buttonMarkupGridScreen"
+      translation="[240,960]"
+      text="To MarkupGrid screen"
+      showFocusFootprint="true"
+      minWidth="120" 
+      height="120"
+    />
   </children>
 </component>

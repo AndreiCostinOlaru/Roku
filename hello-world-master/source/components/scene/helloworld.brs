@@ -10,17 +10,21 @@ sub init()
   m.getVideoData = CreateObject("roSGNode", "GetVideoDataTask")
   m.getVideoData.ObserveField("itemContent", "onFetchVideoData")
   m.getVideoData.control = "RUN"
+  m.buttonMarkupGridScreen = m.top.findNode("buttonMarkupGridScreen")
+  m.buttonMarkupGridScreen.observeField("buttonSelected", "onbuttonMarkupGridScreenSelected")
 end sub
 
 sub onFetchPokemonData(event as Object)
-  m.imageRowList.content =  event.getData()
+  row = event.getData()
+  listRoot = CreateObject("roSGNode","ContentNode")
+  listRoot.appendChild(row)
+  m.imageRowList.content =  listRoot
+  m.markupData = row
 end sub
-
 
 sub onFetchVideoData(event as Object)
   m.videoData = event.getData()
 end sub
-
 
 function onKeyEvent(key as String, press as Boolean) as Boolean
   handled = false
@@ -28,9 +32,12 @@ function onKeyEvent(key as String, press as Boolean) as Boolean
     if (key = "down" and m.imageRowList.hasFocus()) then
       handled = true
       m.button.setFocus(true)
-    else if (key = "up" and m.button.hasFocus()) then
-          handled = true
-          m.imageRowList.setFocus(true)
+    else if (key = "up" and (m.button.hasFocus() or m.buttonMarkupGridScreen.hasFocus())) then
+      handled = true
+      m.imageRowList.setFocus(true)
+    else if (key = "right" and m.button.hasFocus()) then
+      handled = true
+      m.buttonMarkupGridScreen.setFocus(true)
     end if
   end if
   return handled
@@ -70,4 +77,21 @@ end sub
 sub onBackFromVideoScreen()
   m.top.removeChild(m.newVideoScreen)
   m.button.setFocus(true)
+end sub
+
+sub onbuttonMarkupGridScreenSelected()
+  navigateToMarkupGridScreen(m.markupData)
+end sub
+
+sub navigateToMarkupGridScreen(screenContent as Object)
+  m.newMarkupScreen = CreateObject("roSGNode", "MarkupGridScreen")
+  m.newMarkupScreen.content = screenContent
+  m.newMarkupScreen.ObserveField("backTrigger", "onBackFromMarkupGridScreen")
+  m.top.appendChild(m.newMarkupScreen)
+  m.newMarkupScreen.setFocus(true)
+end sub
+
+sub onBackFromMarkupGridScreen()
+  m.top.removeChild(m.newMarkupScreen)
+  m.imageRowList.setFocus(true)
 end sub
