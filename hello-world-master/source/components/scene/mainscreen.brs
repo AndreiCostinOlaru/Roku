@@ -29,15 +29,18 @@ end sub
 function onKeyEvent(key as String, press as Boolean) as Boolean
   handled = false
   if press then
-    if (key = "down" and m.imageRowList.hasFocus()) then
+    if key = "down" and m.imageRowList.hasFocus()
       handled = true
       m.button.setFocus(true)
-    else if (key = "up" and (m.button.hasFocus() or m.buttonMarkupGridScreen.hasFocus())) then
+    else if key = "up" and (m.button.hasFocus() or m.buttonMarkupGridScreen.hasFocus())
       handled = true
       m.imageRowList.setFocus(true)
-    else if (key = "right" and m.button.hasFocus()) then
+    else if key = "right" and m.button.hasFocus()
       handled = true
       m.buttonMarkupGridScreen.setFocus(true)
+    else if key = "left" and m.buttonMarkupGridScreen.hasFocus()
+      handled = true
+      m.button.setFocus(true)
     end if
   end if
   return handled
