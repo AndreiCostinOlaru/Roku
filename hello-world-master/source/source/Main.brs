@@ -16,7 +16,7 @@ sub Main()
     scene.backgroundUri = "pkg:/images/Dragon.jpg"
     screen.show()
 
-    while(true)
+    while true
         msg = wait(0, m.port)
         msgType = type(msg)
         if msgType = "roSGScreenEvent"

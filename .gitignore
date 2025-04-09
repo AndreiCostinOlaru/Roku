@@ -3,3 +3,8 @@
 /.user
 /build
 *.zip
+node_modules
+hello-world-master/bsconfig.json
+package-lock.json
+package.json
+

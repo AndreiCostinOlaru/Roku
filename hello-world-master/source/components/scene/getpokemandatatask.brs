@@ -19,7 +19,7 @@ function executeGetRequest(url as String) as Object
     request.InitClientCertificates()
     if request.AsyncGetToString()
         msg = wait(0, port)
-        if type(msg) = "roUrlEvent" then
+        if type(msg) = "roUrlEvent"
             code = msg.GetResponseCode()
             if code = 200
                 response = ParseJson(msg.GetString())

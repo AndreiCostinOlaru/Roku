@@ -12,13 +12,13 @@
       width="1920" 
       height="1080" />
     <MarkupGrid 
-     id="markupGrid"
-     translation="[20, 20]"
-     itemComponentName="MarkupGridItem" 
-     numColumns="3" 
-     numRows="3" 
-     itemSize="[ 500, 340 ]" 
-     itemSpacing="[ 20, 20 ]" 
-     drawFocusFeedback="false" />
+      id="markupGrid"
+      translation="[20, 20]"
+      itemComponentName="MarkupGridItem" 
+      numColumns="3" 
+      numRows="3" 
+      itemSize="[ 500, 340 ]" 
+      itemSpacing="[ 20, 20 ]" 
+      drawFocusFeedback="false" />
   </children>
 </component>

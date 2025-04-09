@@ -28,7 +28,7 @@ end sub
 
 function onKeyEvent(key as String, press as Boolean) as Boolean
   handled = false
-  if press then
+  if press
     if key = "down" and m.imageRowList.hasFocus()
       handled = true
       m.button.setFocus(true)
