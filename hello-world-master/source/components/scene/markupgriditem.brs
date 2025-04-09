@@ -13,4 +13,4 @@ end sub
 sub showfocus()
     scale = 1 + (m.top.focusPercent * 0.08)
     m.mask.opacity = 0.75 - (m.top.focusPercent * 0.75)
-  end sub
+end sub
