@@ -16,7 +16,7 @@
     />
     <Button
       id="button"
-      translation="[0,960]"
+      translation="[40,920]"
       text="ok"
       showFocusFootprint="true"
       minWidth="120" 
@@ -24,7 +24,7 @@
     />
     <Button
       id="buttonMarkupGridScreen"
-      translation="[240,960]"
+      translation="[280,920]"
       text="To MarkupGrid screen"
       showFocusFootprint="true"
       minWidth="120" 
