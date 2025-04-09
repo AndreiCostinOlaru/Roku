@@ -26,3 +26,6 @@ splash_screen_sd=pkg:/images/splash-screen_sd.jpg
 splash_color=#000000
 splash_min_time=1
 ui_resolutions=fhd
+
+requires_widevine_drm=1
+requires_widevine_version=1.0
