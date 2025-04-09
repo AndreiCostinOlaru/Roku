@@ -32,11 +32,16 @@ end function
 
 function populateItemContent(videoData as Object) as Object
     itemContent = CreateObject("roSGNode","ContentNode")
+    drmParams = {
+        keySystem: "Widevine"
+        licenseServerURL: "https://cwip-shaka-proxy.appspot.com/no_auth"
+    }
     itemContent.id = videoData.id
-    itemContent.title = videoData.title
+    itemContent.title = "DRM Video" 'itemContent.title = videoData.title
     itemContent.FHDPosterUrl = videoData.poster
-    itemContent.url = videoData.stream.url
-    itemContent.streamformat = videoData.stream.format
+    itemContent.url = "https://cdn.bitmovin.com/content/assets/art-of-motion_drm/mpds/11331.mpd" 'itemContent.url = videoData.stream.url
+    itemContent.streamformat = "dash" 'itemContent.streamformat = videoData.stream.format
+    itemContent.drmParams = drmParams
     itemContent.description = videoData.description
     return itemContent
 end function
