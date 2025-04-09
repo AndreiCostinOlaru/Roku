@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
-<component name="HelloWorld" extends="Scene"> 
-  <script type="text/brightscript" uri="helloworld.brs"/>
+<component name="MainScreen" extends="Scene"> 
+  <script type="text/brightscript" uri="mainscreen.brs"/>
 	<children>
     <RowList 
       id="imageRowList" 
