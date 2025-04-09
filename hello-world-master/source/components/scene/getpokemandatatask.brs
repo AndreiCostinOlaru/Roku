@@ -5,10 +5,8 @@ end sub
 
 sub getData()
     pokemonPhotoJson = executeGetRequest("https://my-json-server.typicode.com/bogdanterzea/pokemon-server/photos")
-    listRoot = CreateObject("roSGNode","ContentNode")
     row = populateRowItems(pokemonPhotoJson)
-    listRoot.appendChild(row)
-    m.top.itemContent = listRoot
+    m.top.itemContent = row
 end sub
 
 function executeGetRequest(url as String) as Object
@@ -21,7 +19,7 @@ function executeGetRequest(url as String) as Object
     request.InitClientCertificates()
     if request.AsyncGetToString()
         msg = wait(0, port)
-        if type(msg) = "roUrlEvent" then
+        if type(msg) = "roUrlEvent"
             code = msg.GetResponseCode()
             if code = 200
                 response = ParseJson(msg.GetString())

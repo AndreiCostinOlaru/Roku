@@ -1,0 +1,25 @@
+{
+  "name": "andreiolaru",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "bslint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndreiCostinOlaru/Roku.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AndreiCostinOlaru/Roku/issues"
+  },
+  "homepage": "https://github.com/AndreiCostinOlaru/Roku#readme",
+  "dependencies": {
+    "@rokucommunity/bslint": "^0.8.28",
+    "brighterscript": "^0.69.5"
+  }
+}

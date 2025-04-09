@@ -1,12 +1,12 @@
 sub init()
-    m.poster = m.top.findNode("itemPoster")
-    m.label = m.top.findNode("description")
+    m.background = m.top.findNode("background")
+    m.markUpGrid = m.top.findNode("markupGrid")
 end sub
 
 sub showcontent(event as Object)
-    data = event.getData()
-    m.poster.uri = data.image_1080_url
-    m.label.text = data.description
+    m.background.color = "#808080"
+    m.markUpGrid.content = event.getData()
+    m.markUpGrid.setFocus(true)
 end sub
 
 
