@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+ 
+<component name="MarkupGridScreen" extends="Group">
+  <script type="text/brightscript" uri="markupgridscreen.brs"/>
+  <interface>
+    <field id="content" type="node" onChange="showcontent"/>
+    <field id="backTrigger" type="boolean" value="false"/>
+  </interface>
+  <children >
+    <Rectangle 
+      id="background" 
+      width="1920" 
+      height="1080" />
+    <MarkupGrid 
+     id="markupGrid"
+     translation="[20, 20]"
+     itemComponentName="MarkupGridItem" 
+     numColumns="3" 
+     numRows="3" 
+     itemSize="[ 500, 340 ]" 
+     itemSpacing="[ 20, 20 ]" 
+     drawFocusFeedback="false" />
+  </children>
+</component>
