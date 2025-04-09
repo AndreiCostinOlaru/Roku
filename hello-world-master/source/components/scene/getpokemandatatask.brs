@@ -5,10 +5,8 @@ end sub
 
 sub getData()
     pokemonPhotoJson = executeGetRequest("https://my-json-server.typicode.com/bogdanterzea/pokemon-server/photos")
-    listRoot = CreateObject("roSGNode","ContentNode")
     row = populateRowItems(pokemonPhotoJson)
-    listRoot.appendChild(row)
-    m.top.itemContent = listRoot
+    m.top.itemContent = row
 end sub
 
 function executeGetRequest(url as String) as Object
