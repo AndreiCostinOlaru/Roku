@@ -37,11 +37,17 @@ function populateItemContent(videoData as Object) as Object
         licenseServerURL: "https://cwip-shaka-proxy.appspot.com/no_auth"
     }
     itemContent.id = videoData.id
-    itemContent.title = "DRM Video" 'itemContent.title = videoData.title
+    itemContent.title = "DRM Video" 
     itemContent.FHDPosterUrl = videoData.poster
-    itemContent.url = "https://cdn.bitmovin.com/content/assets/art-of-motion_drm/mpds/11331.mpd" 'itemContent.url = videoData.stream.url
-    itemContent.streamformat = "dash" 'itemContent.streamformat = videoData.stream.format
+    itemContent.url = "https://cdn.bitmovin.com/content/assets/art-of-motion_drm/mpds/11331.mpd" 
+    itemContent.streamformat = "dash" 
     itemContent.drmParams = drmParams
     itemContent.description = videoData.description
+
+    'Video populated from backend data:
+    'itemContent.url = videoData.stream.url
+    'itemContent.streamformat = videoData.stream.format
+    'itemContent.title = videoData.title
+
     return itemContent
 end function
