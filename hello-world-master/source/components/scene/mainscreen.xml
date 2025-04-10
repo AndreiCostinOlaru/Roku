@@ -2,6 +2,8 @@
 
 <component name="MainScreen" extends="Scene"> 
   <script type="text/brightscript" uri="mainscreen.brs"/>
+  <customization suspendhandler="onMainSceneSuspend" />
+  <customization resumehandler="onMainSceneResume" />
 	<children>
     <RowList 
       id="imageRowList" 
