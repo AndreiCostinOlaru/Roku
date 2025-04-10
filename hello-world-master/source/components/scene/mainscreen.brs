@@ -98,3 +98,17 @@ sub onBackFromMarkupGridScreen()
   m.top.removeChild(m.newMarkupScreen)
   m.imageRowList.setFocus(true)
 end sub
+
+sub onMainSceneSuspend(args as dynamic)
+  if m.newVideoScreen <> invalid
+    player = m.newVideoScreen.findNode("video")
+    player.control = "stop"
+    m.top.removeChild(m.newVideoScreen)
+    m.button.setFocus(true)
+    m.newVideoScreen = invalid
+  end if
+end sub
+
+sub onMainSceneResume(args as dynamic)
+  m.top.signalBeacon("AppResumeComplete")
+end sub
