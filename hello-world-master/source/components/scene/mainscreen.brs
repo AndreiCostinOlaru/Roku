@@ -100,14 +100,12 @@ sub onBackFromMarkupGridScreen()
 end sub
 
 sub onMainSceneSuspend(args as dynamic)
-  if args.doesExist("lastSuspendOrResumeReason") and args.lastSuspendOrResumeReason = "home"
-    if m.newVideoScreen <> invalid
-      player = m.newVideoScreen.findNode("video")
-      player.control = "stop"
-      m.top.removeChild(m.newVideoScreen)
-      m.button.setFocus(true)
-      m.newVideoScreen = invalid
-    end if
+  if m.newVideoScreen <> invalid
+    player = m.newVideoScreen.findNode("video")
+    player.control = "stop"
+    m.top.removeChild(m.newVideoScreen)
+    m.button.setFocus(true)
+    m.newVideoScreen = invalid
   end if
 end sub
 
