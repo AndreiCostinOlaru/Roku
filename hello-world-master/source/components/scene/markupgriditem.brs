@@ -15,5 +15,5 @@ sub showcontent(event as Object)
 end sub
 
 sub showfocus()
-    m.background.opacity = m.top.focusPercent  
+    m.background.opacity = m.top.focusPercent
 end sub
