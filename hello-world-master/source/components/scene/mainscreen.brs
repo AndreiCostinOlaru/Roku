@@ -20,6 +20,7 @@ sub onFetchPokemonData(event as Object)
   listRoot.appendChild(row)
   m.imageRowList.content =  listRoot
   m.markupData = row
+  m.top.signalBeacon("AppLaunchComplete")
 end sub
 
 sub onFetchVideoData(event as Object)
