@@ -11,14 +11,15 @@
       id="background" 
       width="1920" 
       height="1080" />
-    <MarkupGrid 
-      id="markupGrid"
-      translation="[20, 20]"
-      itemComponentName="MarkupGridItem" 
-      numColumns="3" 
-      numRows="3" 
-      itemSize="[ 500, 340 ]" 
-      itemSpacing="[ 20, 40 ]" 
-      drawFocusFeedback="false" />
+    <LayoutGroup layoutDirection="horiz" horizAlignment="center" vertAlign="center" translation="[960, 0]">
+      <MarkupGrid 
+        id="markupGrid"
+        itemComponentName="MarkupGridItem" 
+        numColumns="3" 
+        numRows="3" 
+        itemSize="[ 500, 380 ]" 
+        itemSpacing="[ 20, 40 ]" 
+        drawFocusFeedback="false" />
+    </LayoutGroup>
   </children>
 </component>
