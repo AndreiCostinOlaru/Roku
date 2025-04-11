@@ -8,7 +8,7 @@
     <RowList 
       id="imageRowList" 
       itemComponentName="RowListItem"
-      translation="[20,386]"
+      translation="[20, 386]"
       numRows="1"
       itemSize="[ 1920, 300 ]" 
       rowItemSize="[ [450, 240] ]" 
@@ -19,7 +19,7 @@
     />
     <Button
       id="button"
-      translation="[40,920]"
+      translation="[700.0, 1280.0]"
       text="ok"
       showFocusFootprint="true"
       minWidth="120" 
@@ -27,11 +27,63 @@
     />
     <Button
       id="buttonMarkupGridScreen"
-      translation="[280,920]"
+      translation="[940.0, 1280.0]"
       text="To MarkupGrid screen"
       showFocusFootprint="true"
       minWidth="120" 
       height="120"
     />
+    <ParallelAnimation id = "buttonFocusAnimation">
+      <Animation id="buttonFocusRowListTranslationCenterUp"
+        duration="1"
+        easeFunction="linear">
+        <Vector2DFieldInterpolator id = "interpCenterUp"
+            key="[0.0, 1.0]"
+            keyValue="[ [20.0, 386.0], [20.0, -320.0] ]"
+            fieldToInterp="imageRowList.translation" />
+      </Animation>
+      <Animation id="buttonFocusVideoButtonTranslationDownCenter"
+        duration="1"
+        easeFunction="linear">
+        <Vector2DFieldInterpolator id = "interpButtonVideoDownCenter"
+            key="[0.0, 1.0]"
+            keyValue="[ [700.0, 1280.0], [700.0, 420.0] ]"
+            fieldToInterp="button.translation" />
+      </Animation>
+      <Animation id="buttonFocusGridButtonTranslationDownCenter"
+        duration="1"
+        easeFunction="linear">
+        <Vector2DFieldInterpolator id = "interpGridDownCenter"
+            key="[0.0, 1.0]"
+            keyValue="[ [940.0, 1280.0], [940.0, 420.0] ]"
+            fieldToInterp="buttonMarkupGridScreen.translation" />
+      </Animation>
+    </ParallelAnimation>
+    <ParallelAnimation id = "rowListFocusAnimation">
+      <Animation id="buttonFocusRowListTranslationUpCenter"
+        duration="1"
+        easeFunction="linear">
+        <Vector2DFieldInterpolator id = "interpUpCenter"
+            key="[0.0, 1.0]"
+            keyValue="[ [20.0, -320.0], [20.0, 386.0] ]"
+            fieldToInterp="imageRowList.translation" />
+      </Animation>
+      <Animation id="buttonFocusVideoButtonTranslationCenterDown"
+        duration="1"
+        easeFunction="linear">
+        <Vector2DFieldInterpolator id = "interpButtonVideoCenterDown"
+            key="[0.0, 1.0]"
+            keyValue="[ [700.0, 420.0], [700.0, 1280.0] ]"
+            fieldToInterp="button.translation" />
+      </Animation>
+      <Animation id="buttonFocusGridButtonTranslationCenterDown"
+        duration="1"
+        easeFunction="linear">
+        <Vector2DFieldInterpolator id = "interpButtonGridCenterDown"
+            key="[0.0, 1.0]"
+            keyValue="[ [940.0, 420.0], [940.0, 1280.0] ]"
+            fieldToInterp="buttonMarkupGridScreen.translation" />
+      </Animation>
+    </ParallelAnimation>
   </children>
 </component>

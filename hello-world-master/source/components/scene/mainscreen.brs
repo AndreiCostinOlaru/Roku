@@ -12,6 +12,8 @@ sub init()
   m.getVideoData.control = "RUN"
   m.buttonMarkupGridScreen = m.top.findNode("buttonMarkupGridScreen")
   m.buttonMarkupGridScreen.observeField("buttonSelected", "onbuttonMarkupGridScreenSelected")
+  m.buttonFocusAnimation = m.top.findNode("buttonFocusAnimation")
+  m.rowListFocusAnimation = m.top.findNode("rowListFocusAnimation")
 end sub
 
 sub onFetchPokemonData(event as Object)
@@ -32,9 +34,11 @@ function onKeyEvent(key as String, press as Boolean) as Boolean
   if press
     if key = "down" and m.imageRowList.hasFocus()
       handled = true
+      m.buttonFocusAnimation.control = "start"
       m.button.setFocus(true)
     else if key = "up" and (m.button.hasFocus() or m.buttonMarkupGridScreen.hasFocus())
       handled = true
+      m.rowListFocusAnimation.control = "start"
       m.imageRowList.setFocus(true)
     else if key = "right" and m.button.hasFocus()
       handled = true
@@ -97,7 +101,7 @@ end sub
 
 sub onBackFromMarkupGridScreen()
   m.top.removeChild(m.newMarkupScreen)
-  m.imageRowList.setFocus(true)
+  m.buttonMarkupGridScreen.setFocus(true)
 end sub
 
 sub onMainSceneSuspend(args as dynamic)
