@@ -22,10 +22,6 @@ end function
 
 sub reverseStartAnimation(animation as Object)
     vector2DFieldInterpolator = animation.getChild(0)
-    if vector2DFieldInterpolator.reverse = false
-        vector2DFieldInterpolator.reverse = true
-    else
-        vector2DFieldInterpolator.reverse = false
-    end if
+    vector2DFieldInterpolator.reverse = not vector2DFieldInterpolator.reverse
     animation.control = "start"
 end sub
