@@ -6,7 +6,7 @@
   <customization suspendhandler="onMainSceneSuspend" />
   <customization resumehandler="onMainSceneResume" />
 	<children>
-    <LayoutGroup id="layoutGroup" itemSpacings="[800]" vertAlignment="center" horizAlignment="center" translation="[980, 0]">     
+    <LayoutGroup id="layoutGroup" itemSpacings="[800]" vertAlignment="center" horizAlignment="center" translation="[980, 1000]">     
       <RowList 
         id="imageRowList" 
         itemComponentName="RowListItem"

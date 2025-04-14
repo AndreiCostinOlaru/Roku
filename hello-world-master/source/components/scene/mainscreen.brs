@@ -1,8 +1,9 @@
 sub init()
   m.imageRowList = m.top.findNode("imageRowList")
+  m.imageRowList.content = populateImageRowList()
   m.button = m.top.findNode("button")
   m.layoutGroup = m.top.findNode("layoutGroup")
-  m.button.setFocus(true)
+  m.imageRowList.setFocus(true)
   m.button.observeField("buttonSelected", "onButtonSelected")
   m.imageRowList.observeField("rowItemSelected", "onRowItemSelected")
   m.getPokemonDataTask = CreateObject("roSGNode", "GetPokemonDataTask")
@@ -20,7 +21,7 @@ sub onFetchPokemonData(event as Object)
   row = event.getData()
   listRoot = CreateObject("roSGNode","ContentNode")
   listRoot.appendChild(row)
-  m.imageRowList.content =  listRoot
+  m.imageRowList.content = listRoot
   m.markupData = row
   m.top.signalBeacon("AppLaunchComplete")
 end sub
@@ -117,3 +118,16 @@ end sub
 sub onMainSceneResume(args as dynamic)
   m.top.signalBeacon("AppResumeComplete")
 end sub
+
+function populateImageRowList() as Object
+  listRoot = CreateObject("roSGNode","ContentNode")
+  row = CreateObject("roSGNode","ContentNode")
+  row.TITLE = "Pokemons"
+  for x = 1 To 5
+    rowChild = CreateObject("roSGNode","ContentNode")
+    rowChild.url = "pkg:/images/gray.png"
+    row.appendChild(rowChild)
+  end for
+  listRoot.appendChild(row)
+  return listRoot
+end function
