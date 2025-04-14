@@ -14,11 +14,11 @@ function createTranslationAnimation(target as Object, originX as Integer, origin
     return translateAnim
 end function
 
-function createParallelAnimation(animation1 as Object, animation2 as Object, animation3 as Object) as Object
+function createParallelAnimation(animations as Object) as Object
     parallelAnim = createObject("roSGNode", "ParallelAnimation")
-    parallelAnim.appendChild(animation1)
-    parallelAnim.appendChild(animation2)
-    parallelAnim.appendChild(animation3)
+    for each animation in animations
+        parallelAnim.appendChild(animation)
+    end for
     return parallelAnim
 end function
 
@@ -26,12 +26,12 @@ function createButtonsRowListAnimation(videoButton as Object, gridButton as Obje
     rowListTranslationCenterUp = createTranslationAnimation(rowList, 20, 386, 20, -320)
     videoButtonTranslationDownCenter = createTranslationAnimation(videoButton, 700, 1280, 700, 420)
     gridButtonTranslationDownCenter = createTranslationAnimation(gridButton, 940, 1280, 940, 420)
-    buttonsFocusAnimation = createParallelAnimation(rowListTranslationCenterUp, videoButtonTranslationDownCenter, gridButtonTranslationDownCenter)
+    buttonsFocusAnimation = createParallelAnimation([rowListTranslationCenterUp, videoButtonTranslationDownCenter, gridButtonTranslationDownCenter])
 
     rowListTranslationUpCenter = createTranslationAnimation(rowList, 20, -320, 20, 386)
     videoButtonTranslationCenterDown = createTranslationAnimation(videoButton, 700, 420, 700, 1280)
     gridButtonTranslationCenterDown = createTranslationAnimation(gridButton, 940, 420, 940, 1280)
-    rowListFocusAnimation = createParallelAnimation(rowListTranslationUpCenter, videoButtonTranslationCenterDown, gridButtonTranslationCenterDown)
+    rowListFocusAnimation = createParallelAnimation([rowListTranslationUpCenter, videoButtonTranslationCenterDown, gridButtonTranslationCenterDown])
 
     return [buttonsFocusAnimation, rowListFocusAnimation]
 end function
