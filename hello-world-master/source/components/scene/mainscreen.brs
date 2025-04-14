@@ -1,7 +1,8 @@
 sub init()
   m.imageRowList = m.top.findNode("imageRowList")
   m.button = m.top.findNode("button")
-  m.imageRowList.setFocus(true)
+  m.layoutGroup = m.top.findNode("layoutGroup")
+  m.button.setFocus(true)
   m.button.observeField("buttonSelected", "onButtonSelected")
   m.imageRowList.observeField("rowItemSelected", "onRowItemSelected")
   m.getPokemonDataTask = CreateObject("roSGNode", "GetPokemonDataTask")
@@ -12,9 +13,7 @@ sub init()
   m.getVideoData.control = "RUN"
   m.buttonMarkupGridScreen = m.top.findNode("buttonMarkupGridScreen")
   m.buttonMarkupGridScreen.observeField("buttonSelected", "onbuttonMarkupGridScreenSelected")
-  m.translationAnimations = createButtonsRowListAnimation(m.button, m.buttonMarkupGridScreen, m.imageRowList)
-  m.buttonFocusAnimation = m.translationAnimations[0]
-  m.rowListFocusAnimation = m.translationAnimations[1]
+  m.translationAnimation = createButtonsRowListAnimation(m.layoutGroup)
 end sub
 
 sub onFetchPokemonData(event as Object)
@@ -35,11 +34,11 @@ function onKeyEvent(key as String, press as Boolean) as Boolean
   if press
     if key = "down" and m.imageRowList.hasFocus()
       handled = true
-      m.buttonFocusAnimation.control = "start"
+      reverseStartAnimation(m.translationAnimation)
       m.button.setFocus(true)
     else if key = "up" and (m.button.hasFocus() or m.buttonMarkupGridScreen.hasFocus())
       handled = true
-      m.rowListFocusAnimation.control = "start"
+      reverseStartAnimation(m.translationAnimation)
       m.imageRowList.setFocus(true)
     else if key = "right" and m.button.hasFocus()
       handled = true

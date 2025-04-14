@@ -6,33 +6,34 @@
   <customization suspendhandler="onMainSceneSuspend" />
   <customization resumehandler="onMainSceneResume" />
 	<children>
-    <RowList 
-      id="imageRowList" 
-      itemComponentName="RowListItem"
-      translation="[20, 386]"
-      numRows="1"
-      itemSize="[ 1920, 300 ]" 
-      rowItemSize="[ [450, 240] ]" 
-      rowItemSpacing="[ [40, 0]]" 
-      rowFocusAnimationStyle="fixedFocusWrap"
-      showRowLabel="[true]"
-      rowLabelOffset="[[0, 20]]"
-    />
-    <Button
-      id="button"
-      translation="[700, 1280]"
-      text="ok"
-      showFocusFootprint="true"
-      minWidth="120" 
-      height="120"
-    />
-    <Button
-      id="buttonMarkupGridScreen"
-      translation="[940, 1280]"
-      text="To MarkupGrid screen"
-      showFocusFootprint="true"
-      minWidth="120" 
-      height="120"
-    />
+    <LayoutGroup id="layoutGroup" itemSpacings="[800]" vertAlignment="center" horizAlignment="center" translation="[980, 0]">     
+      <RowList 
+        id="imageRowList" 
+        itemComponentName="RowListItem"
+        numRows="1"
+        itemSize="[ 1920, 300 ]" 
+        rowItemSize="[ [450, 240] ]" 
+        rowItemSpacing="[ [40, 0]]" 
+        rowFocusAnimationStyle="fixedFocusWrap"
+        showRowLabel="[true]"
+        rowLabelOffset="[[0, 20]]"
+      />
+      <ButtonGroup layoutDirection="horiz" itemSpacings="[20]">
+        <Button
+          id="button"
+          text="ok"
+          showFocusFootprint="true"
+          minWidth="120" 
+          height="120"
+        />
+        <Button
+          id="buttonMarkupGridScreen"
+          text="To MarkupGrid screen"
+          showFocusFootprint="true"
+          minWidth="120" 
+          height="120"
+        />
+      </ButtonGroup>
+    </LayoutGroup>
   </children>
 </component>
