@@ -4,8 +4,10 @@ function createTranslationAnimation(target as Object, originX as Integer, origin
     translateAnim.easeFunction = "linear"
     
     vector2DFieldInterpolator = createObject("roSGNode", "Vector2DFieldInterpolator")
-    vector2DFieldInterpolator.key = [0.0, 1.0]
-    vector2DFieldInterpolator.keyValue = [[originX, originY], [destinationX, destinationY]]
+    vector2DFieldInterpolator.key = [0.0, 0.5, 1.0]
+    meanX = (originX + destinationX) / 2
+    meanY = (originY + destinationY) / 2
+    vector2DFieldInterpolator.keyValue = [[originX, originY], [meanX, meanY], [destinationX, destinationY]]
     vector2DFieldInterpolator.fieldToInterp = target.id+".translation"
 
     translateAnim.appendChild(vector2DFieldInterpolator)
