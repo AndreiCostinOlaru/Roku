@@ -2,6 +2,7 @@
 
 <component name="MainScreen" extends="Scene"> 
   <script type="text/brightscript" uri="mainscreen.brs"/>
+  <script type="text/brightscript" uri="animationhelper.brs"/>
   <customization suspendhandler="onMainSceneSuspend" />
   <customization resumehandler="onMainSceneResume" />
 	<children>
@@ -33,57 +34,5 @@
       minWidth="120" 
       height="120"
     />
-    <ParallelAnimation id = "buttonFocusAnimation">
-      <Animation id="buttonFocusRowListTranslationCenterUp"
-        duration="1"
-        easeFunction="linear">
-        <Vector2DFieldInterpolator id = "interpCenterUp"
-            key="[0.0, 1.0]"
-            keyValue="[ [20, 386], [20, -320] ]"
-            fieldToInterp="imageRowList.translation" />
-      </Animation>
-      <Animation id="buttonFocusVideoButtonTranslationDownCenter"
-        duration="1"
-        easeFunction="linear">
-        <Vector2DFieldInterpolator id = "interpButtonVideoDownCenter"
-            key="[0.0, 1.0]"
-            keyValue="[ [700, 1280], [700, 420] ]"
-            fieldToInterp="button.translation" />
-      </Animation>
-      <Animation id="buttonFocusGridButtonTranslationDownCenter"
-        duration="1"
-        easeFunction="linear">
-        <Vector2DFieldInterpolator id = "interpGridDownCenter"
-            key="[0.0, 1.0]"
-            keyValue="[ [940, 1280], [940, 420] ]"
-            fieldToInterp="buttonMarkupGridScreen.translation" />
-      </Animation>
-    </ParallelAnimation>
-    <ParallelAnimation id = "rowListFocusAnimation">
-      <Animation id="buttonFocusRowListTranslationUpCenter"
-        duration="1"
-        easeFunction="linear">
-        <Vector2DFieldInterpolator id = "interpUpCenter"
-            key="[0.0, 1.0]"
-            keyValue="[ [20, -320], [20, 386] ]"
-            fieldToInterp="imageRowList.translation" />
-      </Animation>
-      <Animation id="buttonFocusVideoButtonTranslationCenterDown"
-        duration="1"
-        easeFunction="linear">
-        <Vector2DFieldInterpolator id = "interpButtonVideoCenterDown"
-            key="[0.0, 1.0]"
-            keyValue="[ [700, 420], [700, 1280] ]"
-            fieldToInterp="button.translation" />
-      </Animation>
-      <Animation id="buttonFocusGridButtonTranslationCenterDown"
-        duration="1"
-        easeFunction="linear">
-        <Vector2DFieldInterpolator id = "interpButtonGridCenterDown"
-            key="[0.0, 1.0]"
-            keyValue="[ [940, 420], [940, 1280] ]"
-            fieldToInterp="buttonMarkupGridScreen.translation" />
-      </Animation>
-    </ParallelAnimation>
   </children>
 </component>
