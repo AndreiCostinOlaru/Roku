@@ -12,7 +12,7 @@ sub init()
   m.getVideoData.control = "RUN"
   m.buttonMarkupGridScreen = m.top.findNode("buttonMarkupGridScreen")
   m.buttonMarkupGridScreen.observeField("buttonSelected", "onbuttonMarkupGridScreenSelected")
-  m.translationAnimations = buttonsRowListAnimation(m.button, m.buttonMarkupGridScreen, m.imageRowList)
+  m.translationAnimations = createButtonsRowListAnimation(m.button, m.buttonMarkupGridScreen, m.imageRowList)
   m.buttonFocusAnimation = m.translationAnimations[0]
   m.rowListFocusAnimation = m.translationAnimations[1]
 end sub
