@@ -31,3 +31,4 @@ requires_widevine_drm=1
 requires_widevine_version=1.0
 
 sdk_instant_resume=1
+supports_input_launch=1
