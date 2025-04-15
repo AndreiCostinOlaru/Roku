@@ -18,7 +18,7 @@
         showRowLabel="[true]"
         rowLabelOffset="[[0, 20]]"
       />
-      <ButtonGroup layoutDirection="horiz" itemSpacings="[20]">
+      <LayoutGroup layoutDirection="horiz" itemSpacings="[20]">
         <Button
           id="button"
           text="ok"
@@ -33,7 +33,7 @@
           minWidth="120" 
           height="120"
         />
-      </ButtonGroup>
+      </LayoutGroup>
     </LayoutGroup>
   </children>
 </component>
