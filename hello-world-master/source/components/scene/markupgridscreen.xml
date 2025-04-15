@@ -11,7 +11,7 @@
       id="background" 
       width="1920" 
       height="1080" />
-    <LayoutGroup layoutDirection="horiz" horizAlignment="center" vertAlign="center" translation="[960, 0]">
+    <LayoutGroup layoutDirection="horiz" horizAlignment="center" translation="[960, 0]">
       <MarkupGrid 
         id="markupGrid"
         itemComponentName="MarkupGridItem" 
