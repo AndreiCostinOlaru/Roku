@@ -1,6 +1,8 @@
 sub init()
   m.imageRowList = m.top.findNode("imageRowList")
+  m.imageRowList.content = populateImageRowList()
   m.button = m.top.findNode("button")
+  m.layoutGroup = m.top.findNode("layoutGroup")
   m.imageRowList.setFocus(true)
   m.button.observeField("buttonSelected", "onButtonSelected")
   m.imageRowList.observeField("rowItemSelected", "onRowItemSelected")
@@ -12,13 +14,14 @@ sub init()
   m.getVideoData.control = "RUN"
   m.buttonMarkupGridScreen = m.top.findNode("buttonMarkupGridScreen")
   m.buttonMarkupGridScreen.observeField("buttonSelected", "onbuttonMarkupGridScreenSelected")
+  m.translationAnimation = createButtonsRowListAnimation(m.layoutGroup)
 end sub
 
 sub onFetchPokemonData(event as Object)
   row = event.getData()
   listRoot = CreateObject("roSGNode","ContentNode")
   listRoot.appendChild(row)
-  m.imageRowList.content =  listRoot
+  m.imageRowList.content = listRoot
   m.markupData = row
   m.top.signalBeacon("AppLaunchComplete")
 end sub
@@ -32,9 +35,11 @@ function onKeyEvent(key as String, press as Boolean) as Boolean
   if press
     if key = "down" and m.imageRowList.hasFocus()
       handled = true
+      reverseStartAnimation(m.translationAnimation)
       m.button.setFocus(true)
     else if key = "up" and (m.button.hasFocus() or m.buttonMarkupGridScreen.hasFocus())
       handled = true
+      reverseStartAnimation(m.translationAnimation)
       m.imageRowList.setFocus(true)
     else if key = "right" and m.button.hasFocus()
       handled = true
@@ -97,7 +102,7 @@ end sub
 
 sub onBackFromMarkupGridScreen()
   m.top.removeChild(m.newMarkupScreen)
-  m.imageRowList.setFocus(true)
+  m.buttonMarkupGridScreen.setFocus(true)
 end sub
 
 sub onMainSceneSuspend(args as dynamic)
@@ -113,3 +118,16 @@ end sub
 sub onMainSceneResume(args as dynamic)
   m.top.signalBeacon("AppResumeComplete")
 end sub
+
+function populateImageRowList() as Object
+  listRoot = CreateObject("roSGNode","ContentNode")
+  row = CreateObject("roSGNode","ContentNode")
+  row.TITLE = "Pokemons"
+  for x = 1 To 5
+    rowChild = CreateObject("roSGNode","ContentNode")
+    rowChild.url = "pkg:/images/gray.png"
+    row.appendChild(rowChild)
+  end for
+  listRoot.appendChild(row)
+  return listRoot
+end function

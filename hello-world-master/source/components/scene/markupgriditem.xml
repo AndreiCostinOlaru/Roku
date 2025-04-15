@@ -10,11 +10,11 @@
     <Poster 
       id="background" 
       width="500" 
-      height="380">
-    </Poster>
+      height="380"
+      opacity="0" />
     <LayoutGroup layoutDirection="vert" horizAlignment="center" itemSpacings="[10]" translation="[250, 10]">
       <MaskGroup id="roundedMask">
-        <Poster id="itemPoster" width="450" height="310"/>
+        <Poster id="itemPoster" width="450" height="310" />
       </MaskGroup>
       <Label 
         id="itemName"
@@ -22,8 +22,7 @@
         horizAlign="center"
         vertAlign="center"
         height="50"
-        font="font:MediumBoldSystemFont"
-      />
+        font="font:MediumBoldSystemFont" />
     </LayoutGroup>  
   </children>
 </component>
