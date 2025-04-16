@@ -18,6 +18,7 @@ sub init()
   m.rowListFocusTimer = createTimer(5, true)
   startTimer(m.rowListFocusTimer)
   m.rowListFocusTimer.ObserveField("fire", "onRowListTimer")
+  m.imageRowList.ObserveField("rowItemFocused", "onRowListItemFocused")
 end sub
 
 sub onFetchPokemonData(event as Object)
@@ -143,4 +144,8 @@ sub onRowListTimer(event as Object)
   indexFocusedItem = m.imageRowList.rowItemFocused[1]
   newIndexFocusedItem = (indexFocusedItem + 1) mod 7
   m.imageRowList.jumpToRowItem = [0, newIndexFocusedItem]
+end sub
+
+sub onRowListItemFocused(event as Object)
+  resetTimer(m.rowListFocusTimer, 5)
 end sub

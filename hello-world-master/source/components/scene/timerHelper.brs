@@ -12,3 +12,9 @@ end sub
 sub stopTimer(timer as Object)
     timer.control = "stop"
 end sub
+
+sub resetTimer(timer as Object, duration as Integer)
+    stopTimer(timer)
+    timer.duration = duration
+    startTimer(timer)
+end sub
