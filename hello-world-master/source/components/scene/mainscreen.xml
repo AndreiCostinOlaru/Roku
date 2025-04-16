@@ -3,6 +3,7 @@
 <component name="MainScreen" extends="Scene"> 
   <script type="text/brightscript" uri="mainscreen.brs"/>
   <script type="text/brightscript" uri="animationhelper.brs"/>
+  <script type="text/brightscript" uri="timerHelper.brs" />
   <customization suspendhandler="onMainSceneSuspend" />
   <customization resumehandler="onMainSceneResume" />
 	<children>

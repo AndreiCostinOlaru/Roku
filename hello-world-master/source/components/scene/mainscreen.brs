@@ -15,6 +15,10 @@ sub init()
   m.buttonMarkupGridScreen = m.top.findNode("buttonMarkupGridScreen")
   m.buttonMarkupGridScreen.observeField("buttonSelected", "onbuttonMarkupGridScreenSelected")
   m.translationAnimation = createButtonsRowListAnimation(m.layoutGroup)
+  m.rowListFocusTimer = createTimer(5, true)
+  startTimer(m.rowListFocusTimer)
+  m.rowListFocusTimer.ObserveField("fire", "onRowListTimer")
+  m.imageRowList.ObserveField("rowItemFocused", "onRowListItemFocused")
 end sub
 
 sub onFetchPokemonData(event as Object)
@@ -37,10 +41,12 @@ function onKeyEvent(key as String, press as Boolean) as Boolean
       handled = true
       reverseStartAnimation(m.translationAnimation)
       m.button.setFocus(true)
+      stopTimer(m.rowListFocusTimer)
     else if key = "up" and (m.button.hasFocus() or m.buttonMarkupGridScreen.hasFocus())
       handled = true
       reverseStartAnimation(m.translationAnimation)
       m.imageRowList.setFocus(true)
+      startTimer(m.rowListFocusTimer)
     else if key = "right" and m.button.hasFocus()
       handled = true
       m.buttonMarkupGridScreen.setFocus(true)
@@ -59,6 +65,7 @@ end sub
 sub onRowItemSelected(event as Object)
   data =event.getData()
   screenContent = m.imageRowList.content.getChild(data[0]).getChild(data[1])
+  stopTimer(m.rowListFocusTimer)
   navigateToDescriptionScreen(screenContent)
 end sub
 
@@ -72,6 +79,7 @@ end sub
 
 sub onBackFromDescriptionScreen()
   m.top.removeChild(m.newScreen)
+  startTimer(m.rowListFocusTimer)
   m.imageRowList.setFocus(true)
 end sub
 
@@ -131,3 +139,13 @@ function populateImageRowList() as Object
   listRoot.appendChild(row)
   return listRoot
 end function
+
+sub onRowListTimer(event as Object)
+  indexFocusedItem = m.imageRowList.rowItemFocused[1]
+  newIndexFocusedItem = (indexFocusedItem + 1) mod 7
+  m.imageRowList.jumpToRowItem = [0, newIndexFocusedItem]
+end sub
+
+sub onRowListItemFocused(event as Object)
+  resetTimer(m.rowListFocusTimer, 5)
+end sub
