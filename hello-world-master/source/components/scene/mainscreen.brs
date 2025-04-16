@@ -64,6 +64,7 @@ end sub
 sub onRowItemSelected(event as Object)
   data =event.getData()
   screenContent = m.imageRowList.content.getChild(data[0]).getChild(data[1])
+  stopTimer(m.rowListFocusTimer)
   navigateToDescriptionScreen(screenContent)
 end sub
 
@@ -77,6 +78,7 @@ end sub
 
 sub onBackFromDescriptionScreen()
   m.top.removeChild(m.newScreen)
+  startTimer(m.rowListFocusTimer)
   m.imageRowList.setFocus(true)
 end sub
 
