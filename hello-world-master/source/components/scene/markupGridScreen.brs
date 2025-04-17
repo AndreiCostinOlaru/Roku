@@ -1,12 +1,12 @@
 sub init()
     m.background = m.top.findNode("background")
-    m.markUpGrid = m.top.findNode("markupGrid")
+    m.markupGrid = m.top.findNode("markupGrid")
 end sub
 
-sub showcontent(event as Object)
+sub showContent(event as Object)
     m.background.color = "#808080"
-    m.markUpGrid.content = event.getData()
-    m.markUpGrid.setFocus(true)
+    m.markupGrid.content = event.getData()
+    m.markupGrid.setFocus(true)
 end sub
 
 
