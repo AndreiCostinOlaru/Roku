@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?> 
 
 <component name="GetVideoDataTask" extends="Task">
-    <script type="text/brightscript" uri="getvideodata.brs" />
+    <script type="text/brightscript" uri="getVideoData.brs" />
     <interface>
         <field id="itemContent" type="node"/>
     </interface>
