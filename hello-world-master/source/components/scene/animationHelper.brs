@@ -16,7 +16,7 @@ function createTranslationAnimation(target as Object, originX as Integer, origin
 end function
 
 function createButtonsRowListAnimation(layoutGroup as Object) as Object
-    layoutTranslationRowListFocus = createTranslationAnimation(layoutGroup, 980, 1000, 980, 0)
+    layoutTranslationRowListFocus = createTranslationAnimation(layoutGroup, 1000, 1000, 1000, 0)
     return layoutTranslationRowListFocus
 end function
 

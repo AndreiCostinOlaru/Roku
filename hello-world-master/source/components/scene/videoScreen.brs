@@ -1,12 +1,12 @@
 sub init()
-    m.poster = m.top.findNode("itemPoster")
-    m.label = m.top.findNode("description")
+    m.video = m.top.findNode("video")
 end sub
 
-sub showcontent(event as Object)
+sub showContent(event as Object)
     data = event.getData()
-    m.poster.uri = data.image_1080_url
-    m.label.text = data.description
+    m.video.content = data
+    m.video.setFocus(true)
+    m.video.control = "play"
 end sub
 
 
@@ -14,6 +14,7 @@ function onKeyEvent(key as String, press as Boolean) as Boolean
     handled = false
     if press
         if key ="back"
+            m.video.control = "stop"
             m.top.backTrigger = true
             handled = true
         end if

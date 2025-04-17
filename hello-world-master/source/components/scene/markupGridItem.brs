@@ -6,7 +6,7 @@ sub init()
     m.background.blendColor = "0xAAAAAAFF"
 end sub
 
-sub showcontent(event as Object)
+sub showContent(event as Object)
     data = event.getData()
     m.poster.uri = data.url
     m.label.text = data.title
@@ -14,6 +14,6 @@ sub showcontent(event as Object)
     m.mask.maskUri = "pkg:/images/rectangle_24.png"
 end sub
 
-sub showfocus()
+sub showFocus()
     m.background.opacity = m.top.focusPercent
 end sub

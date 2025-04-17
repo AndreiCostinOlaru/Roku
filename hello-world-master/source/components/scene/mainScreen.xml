@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
 <component name="MainScreen" extends="Scene"> 
-  <script type="text/brightscript" uri="mainscreen.brs"/>
-  <script type="text/brightscript" uri="animationhelper.brs"/>
+  <script type="text/brightscript" uri="mainScreen.brs"/>
+  <script type="text/brightscript" uri="animationHelper.brs"/>
   <script type="text/brightscript" uri="timerHelper.brs" />
   <customization suspendhandler="onMainSceneSuspend" />
   <customization resumehandler="onMainSceneResume" />
 	<children>
-    <LayoutGroup id="layoutGroup" itemSpacings="[800]" vertAlignment="center" horizAlignment="center" translation="[980, 1000]">     
+    <LayoutGroup id="layoutGroup" itemSpacings="[800]" vertAlignment="center" horizAlignment="center" translation="[1000, 1000]">     
       <RowList 
         id="imageRowList" 
         itemComponentName="RowListItem"
@@ -21,7 +21,7 @@
       />
       <LayoutGroup layoutDirection="horiz" itemSpacings="[20]">
         <Button
-          id="button"
+          id="buttonVideo"
           text="ok"
           showFocusFootprint="true"
           minWidth="120" 

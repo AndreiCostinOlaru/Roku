@@ -1,32 +1,37 @@
 sub init()
   m.imageRowList = m.top.findNode("imageRowList")
-  m.imageRowList.content = populateImageRowList()
-  m.button = m.top.findNode("button")
+  m.buttonVideo = m.top.findNode("buttonVideo")
   m.layoutGroup = m.top.findNode("layoutGroup")
-  m.imageRowList.setFocus(true)
-  m.button.observeField("buttonSelected", "onButtonSelected")
-  m.imageRowList.observeField("rowItemSelected", "onRowItemSelected")
-  m.getPokemonDataTask = CreateObject("roSGNode", "GetPokemonDataTask")
-  m.getPokemonDataTask.ObserveField("itemContent", "onFetchPokemonData")
-  m.getPokemonDataTask.control = "RUN"
-  m.getVideoData = CreateObject("roSGNode", "GetVideoDataTask")
-  m.getVideoData.ObserveField("itemContent", "onFetchVideoData")
-  m.getVideoData.control = "RUN"
   m.buttonMarkupGridScreen = m.top.findNode("buttonMarkupGridScreen")
-  m.buttonMarkupGridScreen.observeField("buttonSelected", "onbuttonMarkupGridScreenSelected")
+
+  m.imageRowList.setFocus(true)
+  m.imageRowList.content = populateImageRowList()
+  
+  m.getPokemonDataTask = CreateObject("roSGNode", "GetPokemonDataTask")
+  m.getVideoData = CreateObject("roSGNode", "GetVideoDataTask")
   m.translationAnimation = createButtonsRowListAnimation(m.layoutGroup)
   m.rowListFocusTimer = createTimer(5, true)
-  startTimer(m.rowListFocusTimer)
+
+  m.buttonVideo.observeField("buttonSelected", "onButtonVideoSelected")
+  m.imageRowList.observeField("rowItemSelected", "onRowItemSelected")
+  m.getPokemonDataTask.ObserveField("itemContent", "onFetchPokemonData")
+  m.getVideoData.ObserveField("itemContent", "onFetchVideoData")
+  m.buttonMarkupGridScreen.observeField("buttonSelected", "onButtonMarkupGridScreenSelected")
   m.rowListFocusTimer.ObserveField("fire", "onRowListTimer")
   m.imageRowList.ObserveField("rowItemFocused", "onRowListItemFocused")
+
+  m.getPokemonDataTask.control = "RUN"
+  m.getVideoData.control = "RUN"
+ 
+  startTimer(m.rowListFocusTimer)
 end sub
 
 sub onFetchPokemonData(event as Object)
-  row = event.getData()
-  listRoot = CreateObject("roSGNode","ContentNode")
-  listRoot.appendChild(row)
-  m.imageRowList.content = listRoot
-  m.markupData = row
+  rowContent = event.getData()
+  rowListRootContent = CreateObject("roSGNode","ContentNode")
+  rowListRootContent.appendChild(rowContent)
+  m.imageRowList.content = rowListRootContent
+  m.markupGridData = rowContent
   m.top.signalBeacon("AppLaunchComplete")
 end sub
 
@@ -40,45 +45,45 @@ function onKeyEvent(key as String, press as Boolean) as Boolean
     if key = "down" and m.imageRowList.hasFocus()
       handled = true
       reverseStartAnimation(m.translationAnimation)
-      m.button.setFocus(true)
+      m.buttonVideo.setFocus(true)
       stopTimer(m.rowListFocusTimer)
-    else if key = "up" and (m.button.hasFocus() or m.buttonMarkupGridScreen.hasFocus())
+    else if key = "up" and (m.buttonVideo.hasFocus() or m.buttonMarkupGridScreen.hasFocus())
       handled = true
       reverseStartAnimation(m.translationAnimation)
       m.imageRowList.setFocus(true)
       startTimer(m.rowListFocusTimer)
-    else if key = "right" and m.button.hasFocus()
+    else if key = "right" and m.buttonVideo.hasFocus()
       handled = true
       m.buttonMarkupGridScreen.setFocus(true)
     else if key = "left" and m.buttonMarkupGridScreen.hasFocus()
       handled = true
-      m.button.setFocus(true)
+      m.buttonVideo.setFocus(true)
     end if
   end if
   return handled
 end function
 
-sub onButtonSelected()
+sub onButtonVideoSelected()
   navigateToVideoScreen(m.videoData)
 end sub
 
 sub onRowItemSelected(event as Object)
-  data =event.getData()
+  data = event.getData()
   screenContent = m.imageRowList.content.getChild(data[0]).getChild(data[1])
   stopTimer(m.rowListFocusTimer)
   navigateToDescriptionScreen(screenContent)
 end sub
 
 sub navigateToDescriptionScreen(screenContent as Object)
-  m.newScreen = CreateObject("roSGNode", "DescriptionScreen")
-  m.newScreen.content = screenContent
-  m.newScreen.ObserveField("backTrigger", "onBackFromDescriptionScreen")
-  m.top.appendChild(m.newScreen)
-  m.newScreen.setFocus(true)
+  m.newDescriptionScreen = CreateObject("roSGNode", "DescriptionScreen")
+  m.newDescriptionScreen.content = screenContent
+  m.newDescriptionScreen.ObserveField("backTrigger", "onBackFromDescriptionScreen")
+  m.top.appendChild(m.newDescriptionScreen)
+  m.newDescriptionScreen.setFocus(true)
 end sub
 
 sub onBackFromDescriptionScreen()
-  m.top.removeChild(m.newScreen)
+  m.top.removeChild(m.newDescriptionScreen)
   startTimer(m.rowListFocusTimer)
   m.imageRowList.setFocus(true)
 end sub
@@ -86,30 +91,30 @@ end sub
 sub navigateToVideoScreen(screenContent as Object)
   m.newVideoScreen = CreateObject("roSGNode", "VideoScreen")
   m.newVideoScreen.content = screenContent
-  m.newVideoScreen.ObserveField("backVideoTrigger", "onBackFromVideoScreen")
+  m.newVideoScreen.ObserveField("backTrigger", "onBackFromVideoScreen")
   m.top.appendChild(m.newVideoScreen)
   m.newVideoScreen.setFocus(true)
 end sub
 
 sub onBackFromVideoScreen()
   m.top.removeChild(m.newVideoScreen)
-  m.button.setFocus(true)
+  m.buttonVideo.setFocus(true)
 end sub
 
 sub onbuttonMarkupGridScreenSelected()
-  navigateToMarkupGridScreen(m.markupData)
+  navigateToMarkupGridScreen(m.markupGridData)
 end sub
 
 sub navigateToMarkupGridScreen(screenContent as Object)
-  m.newMarkupScreen = CreateObject("roSGNode", "MarkupGridScreen")
-  m.newMarkupScreen.content = screenContent
-  m.newMarkupScreen.ObserveField("backTrigger", "onBackFromMarkupGridScreen")
-  m.top.appendChild(m.newMarkupScreen)
-  m.newMarkupScreen.setFocus(true)
+  m.newMarkupGridScreen = CreateObject("roSGNode", "MarkupGridScreen")
+  m.newMarkupGridScreen.content = screenContent
+  m.newMarkupGridScreen.ObserveField("backTrigger", "onBackFromMarkupGridScreen")
+  m.top.appendChild(m.newMarkupGridScreen)
+  m.newMarkupGridScreen.setFocus(true)
 end sub
 
 sub onBackFromMarkupGridScreen()
-  m.top.removeChild(m.newMarkupScreen)
+  m.top.removeChild(m.newMarkupGridScreen)
   m.buttonMarkupGridScreen.setFocus(true)
 end sub
 
@@ -118,7 +123,7 @@ sub onMainSceneSuspend(args as dynamic)
     player = m.newVideoScreen.findNode("video")
     player.control = "stop"
     m.top.removeChild(m.newVideoScreen)
-    m.button.setFocus(true)
+    m.buttonVideo.setFocus(true)
     m.newVideoScreen = invalid
   end if
 end sub
@@ -128,16 +133,16 @@ sub onMainSceneResume(args as dynamic)
 end sub
 
 function populateImageRowList() as Object
-  listRoot = CreateObject("roSGNode","ContentNode")
-  row = CreateObject("roSGNode","ContentNode")
-  row.TITLE = "Pokemons"
+  rowListRootContent = CreateObject("roSGNode","ContentNode")
+  rowContent = CreateObject("roSGNode","ContentNode")
+  rowContent.TITLE = "Pokemons"
   for x = 1 To 5
     rowChild = CreateObject("roSGNode","ContentNode")
     rowChild.url = "pkg:/images/gray.png"
-    row.appendChild(rowChild)
+    rowContent.appendChild(rowChild)
   end for
-  listRoot.appendChild(row)
-  return listRoot
+  rowListRootContent.appendChild(rowContent)
+  return rowListRootContent
 end function
 
 sub onRowListTimer(event as Object)
