@@ -15,7 +15,7 @@ function onKeyEvent(key as String, press as Boolean) as Boolean
     if press
         if key ="back"
             m.video.control = "stop"
-            m.top.backVideoTrigger = true
+            m.top.backTrigger = true
             handled = true
         end if
     end if

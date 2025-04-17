@@ -91,7 +91,7 @@ end sub
 sub navigateToVideoScreen(screenContent as Object)
   m.newVideoScreen = CreateObject("roSGNode", "VideoScreen")
   m.newVideoScreen.content = screenContent
-  m.newVideoScreen.ObserveField("backVideoTrigger", "onBackFromVideoScreen")
+  m.newVideoScreen.ObserveField("backTrigger", "onBackFromVideoScreen")
   m.top.appendChild(m.newVideoScreen)
   m.newVideoScreen.setFocus(true)
 end sub
