@@ -2,7 +2,7 @@ sub init()
     m.video = m.top.findNode("video")
 end sub
 
-sub showcontent(event as Object)
+sub showContent(event as Object)
     data = event.getData()
     m.video.content = data
     m.video.setFocus(true)

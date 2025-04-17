@@ -3,7 +3,7 @@
 <component name="VideoScreen" extends="Group">
   <script type="text/brightscript" uri="videoScreen.brs"/>
   <interface>
-    <field id="content" type="node" onChange="showcontent"/>
+    <field id="content" type="node" onChange="showContent"/>
     <field id="backVideoTrigger" type="boolean" value="false"/>
   </interface>
   <children >
