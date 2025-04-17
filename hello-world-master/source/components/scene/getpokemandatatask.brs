@@ -38,7 +38,7 @@ function populateRowItems(pokemonPhotoJson as Object) as Object
         rowChild.id = item.id
         rowChild.title = item.title
         rowChild.url = item.url
-        rowChild.image_1080_url = item.image_1080_url
+        rowChild.image1080Url = item.image_1080_url
         rowChild.description = item.description
         rowChild.FHDPOSTERURL = item.url
         row.appendChild(rowChild)
