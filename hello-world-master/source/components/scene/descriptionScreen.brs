@@ -3,7 +3,7 @@ sub init()
     m.label = m.top.findNode("description")
 end sub
 
-sub showcontent(event as Object)
+sub showContent(event as Object)
     data = event.getData()
     m.poster.uri = data.image_1080_url
     m.label.text = data.description
