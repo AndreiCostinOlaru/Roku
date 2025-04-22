@@ -5,32 +5,36 @@ end sub
 
 sub getData()
     videoDataJson = executeGetRequest("https://my-json-server.typicode.com/bogdanterzea/pokemon-server/videos")
-    m.top.itemContent = populateItemContent(videoDataJson[0])
+    m.top.itemContent = setUpVideoContent(videoDataJson[0])
 end sub
 
 function executeGetRequest(url as String) as Object
     port = CreateObject("roMessagePort")
-    request = CreateObject("roUrlTransfer")
+    request = setUpHttpRequest(url)
     request.setMessagePort(port)
+    request.AsyncGetToString()
+    msg = wait(0, port)
+    if isSuccessfulHttpResponse(msg)
+        response = ParseJson(msg.GetString())
+        return response
+    end if
+end function
+
+function setUpHttpRequest(url as String) as Object
+    request = CreateObject("roUrlTransfer")
+    request.setMessagePort(CreateObject("roMessagePort"))
     request.SetUrl(url)
     request.SetCertificatesFile("common:/certs/ca-bundle.crt")
     request.AddHeader("X-Roku-Reserved-Dev-Id", "")
     request.InitClientCertificates()
-    if request.AsyncGetToString()
-        while true
-            msg = wait(0, port)
-            if type(msg) = "roUrlEvent"
-                code = msg.GetResponseCode()
-                if code = 200
-                    response = ParseJson(msg.GetString())
-                    return response
-                end if
-            end if
-        end while
-    end if
+    return request
 end function
 
-function populateItemContent(videoData as Object) as Object
+function isSuccessfulHttpResponse(msg as Object) as Boolean
+    return type(msg) = "roUrlEvent" and msg.GetResponseCode() = 200
+end function
+
+function setUpVideoContent(videoData as Object) as Object
     itemContent = CreateObject("roSGNode","ContentNode")
     drmParams = {
         keySystem: "Widevine"
