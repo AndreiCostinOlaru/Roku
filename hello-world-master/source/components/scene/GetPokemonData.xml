@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?> 
 
 <component name="GetPokemonDataTask" extends="Task">
-  <script type="text/brightscript" uri="getPokemanData.brs" />
+  <script type="text/brightscript" uri="getPokemonData.brs" />
   <interface>
     <field id="itemContent" type="node"/>
   </interface>
