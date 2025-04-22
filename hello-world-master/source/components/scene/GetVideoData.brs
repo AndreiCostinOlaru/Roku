@@ -14,8 +14,10 @@ function executeGetRequest(url as String) as Object
     request.setMessagePort(port)
     request.AsyncGetToString()
     msg = wait(0, port)
+
     if isSuccessfulHttpResponse(msg)
         response = ParseJson(msg.GetString())
+
         return response
     end if
 end function
@@ -27,6 +29,7 @@ function setUpHttpRequest(url as String) as Object
     request.SetCertificatesFile("common:/certs/ca-bundle.crt")
     request.AddHeader("X-Roku-Reserved-Dev-Id", "")
     request.InitClientCertificates()
+    
     return request
 end function
 

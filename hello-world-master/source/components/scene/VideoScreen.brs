@@ -12,6 +12,7 @@ end sub
 
 function onKeyEvent(key as String, press as Boolean) as Boolean
     handled = false
+
     if press
         if key ="back"
             m.video.control = "stop"
@@ -19,5 +20,6 @@ function onKeyEvent(key as String, press as Boolean) as Boolean
             handled = true
         end if
     end if
+    
     return handled
 end function

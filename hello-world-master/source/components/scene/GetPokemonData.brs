@@ -14,8 +14,10 @@ function executeGetRequest(url as String) as Object
     request.setMessagePort(port)
     request.AsyncGetToString()
     msg = wait(0, port)
+
     if isSuccessfulHttpResponse(msg)
         response = ParseJson(msg.GetString())
+
         return response
     end if
 end function
@@ -27,6 +29,7 @@ function setUpHttpRequest(url as String) as Object
     request.SetCertificatesFile("common:/certs/ca-bundle.crt")
     request.AddHeader("X-Roku-Reserved-Dev-Id", "")
     request.InitClientCertificates()
+
     return request
 end function
 
@@ -37,10 +40,12 @@ end function
 function populateRowItems(pokemonPhotoJson as Object) as Object
     rowContent = CreateObject("roSGNode","ContentNode")
     rowContent.TITLE = "Pokemons"
+
     for each pokemonData in pokemonPhotoJson
         rowChild = createPokemonItem(pokemonData)
         rowContent.appendChild(rowChild)
     end for
+
     return rowContent
 end function
 
@@ -52,5 +57,6 @@ function createPokemonItem(pokemonData as Object) as Object
     pokemon.image1080Url = pokemonData.image_1080_url
     pokemon.description = pokemonData.description
     pokemon.FHDPOSTERURL = pokemonData.url
+    
     return pokemon
 end function

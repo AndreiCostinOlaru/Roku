@@ -2,6 +2,7 @@ function createTimer(duration as Integer, repeat as Boolean) as Object
     timer = createObject("roSGNode", "Timer")
     timer.duration = duration
     timer.repeat = repeat
+    
     return timer
 end function
 

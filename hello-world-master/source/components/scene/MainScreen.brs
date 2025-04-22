@@ -3,6 +3,7 @@ sub init()
   m.buttonVideo = m.top.findNode("buttonVideo")
   m.layoutGroup = m.top.findNode("layoutGroup")
   m.buttonMarkupGridScreen = m.top.findNode("buttonMarkupGridScreen")
+  
   initializeUI()
   initializeTasks()
   initializeAnimations()
@@ -16,27 +17,9 @@ sub initializeUI()
   m.imageRowList.content = populateImageRowList()
 end sub
 
-function populateImageRowList() as Object
-  rowListRootContent = CreateObject("roSGNode","ContentNode")
-  rowContent = CreateObject("roSGNode","ContentNode")
-  rowContent.TITLE = "Pokemons"
-  for x = 1 To 5
-    rowChild = createPosterPlaceholder()
-    rowContent.appendChild(rowChild)
-  end for
-  rowListRootContent.appendChild(rowContent)
-  return rowListRootContent
-end function
-
-function createPosterPlaceholder() as Object
-  placeholder = CreateObject("roSGNode","ContentNode")
-  placeholder.url = "pkg:/images/gray.png"
-  return placeholder
-end function
-
 sub setUpObservedFields()
-  m.buttonVideo.observeField("buttonSelected", "onButtonVideoSelected")
-  m.imageRowList.observeField("rowItemSelected", "onRowItemSelected")
+  m.buttonVideo.ObserveField("buttonSelected", "onButtonVideoSelected")
+  m.imageRowList.ObserveField("rowItemSelected", "onRowItemSelected")
   m.getPokemonDataTask.ObserveField("itemContent", "onFetchPokemonData")
   m.getVideoData.ObserveField("itemContent", "onFetchVideoData")
   m.buttonMarkupGridScreen.observeField("buttonSelected", "onButtonMarkupGridScreenSelected")
@@ -76,26 +59,6 @@ sub onFetchVideoData(event as Object)
   m.videoData = event.getData()
 end sub
 
-function onKeyEvent(key as String, press as Boolean) as Boolean
-  handled = false
-  if press
-    if key = "down" and m.imageRowList.hasFocus()
-      handled = true
-      moveFocusToButtons()
-    else if key = "up" and isAnyButtonFocused()
-      handled = true
-      moveFocusToRowList()
-    else if key = "right" and m.buttonVideo.hasFocus()
-      handled = true
-      m.buttonMarkupGridScreen.setFocus(true)
-    else if key = "left" and m.buttonMarkupGridScreen.hasFocus()
-      handled = true
-      m.buttonVideo.setFocus(true)
-    end if
-  end if
-  return handled
-end function
-
 sub moveFocusToButtons()
   reverseStartAnimation(m.translationAnimation)
   m.buttonVideo.setFocus(true)
@@ -107,10 +70,6 @@ sub moveFocusToRowList()
   m.imageRowList.setFocus(true)
   startTimer(m.rowListFocusTimer)
 end sub
-
-function isAnyButtonFocused() as Boolean
-  return m.buttonVideo.hasFocus() or m.buttonMarkupGridScreen.hasFocus()
-end function
 
 sub onButtonVideoSelected()
   navigateToVideoScreen(m.videoData)
@@ -190,3 +149,51 @@ end sub
 sub onRowListItemFocused(event as Object)
   resetTimer(m.rowListFocusTimer, 5)
 end sub
+
+function onKeyEvent(key as String, press as Boolean) as Boolean
+  handled = false
+
+  if press
+    if key = "down" and m.imageRowList.hasFocus()
+      handled = true
+      moveFocusToButtons()
+    else if key = "up" and isAnyButtonFocused()
+      handled = true
+      moveFocusToRowList()
+    else if key = "right" and m.buttonVideo.hasFocus()
+      handled = true
+      m.buttonMarkupGridScreen.setFocus(true)
+    else if key = "left" and m.buttonMarkupGridScreen.hasFocus()
+      handled = true
+      m.buttonVideo.setFocus(true)
+    end if
+  end if
+
+  return handled
+end function
+
+function populateImageRowList() as Object
+  rowListRootContent = CreateObject("roSGNode","ContentNode")
+  rowContent = CreateObject("roSGNode","ContentNode")
+  rowContent.TITLE = "Pokemons"
+
+  for x = 1 To 5
+    rowChild = createPosterPlaceholder()
+    rowContent.appendChild(rowChild)
+  end for
+
+  rowListRootContent.appendChild(rowContent)
+
+  return rowListRootContent
+end function
+
+function createPosterPlaceholder() as Object
+  placeholder = CreateObject("roSGNode","ContentNode")
+  placeholder.url = "pkg:/images/gray.png"
+
+  return placeholder
+end function
+
+function isAnyButtonFocused() as Boolean
+  return m.buttonVideo.hasFocus() or m.buttonMarkupGridScreen.hasFocus()
+end function
