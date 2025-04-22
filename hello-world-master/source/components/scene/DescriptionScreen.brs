@@ -5,18 +5,20 @@ end sub
 
 sub showContent(event as Object)
     data = event.getData()
-    m.poster.uri = data.image_1080_url
+    m.poster.uri = data.image1080Url
     m.label.text = data.description
 end sub
 
 
 function onKeyEvent(key as String, press as Boolean) as Boolean
     handled = false
+    
     if press
         if key ="back"
             m.top.backTrigger = true
             handled = true
         end if
     end if
+    
     return handled
 end function
