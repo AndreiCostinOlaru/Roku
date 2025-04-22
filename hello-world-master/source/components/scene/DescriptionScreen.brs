@@ -5,7 +5,7 @@ end sub
 
 sub showContent(event as Object)
     data = event.getData()
-    m.poster.uri = data.image_1080_url
+    m.poster.uri = data.image1080Url
     m.label.text = data.description
 end sub
 
