@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
  
 <component name="DescriptionScreen" extends="Group">
-  <script type="text/brightscript" uri="descriptionscreen.brs"/>
+  <script type="text/brightscript" uri="descriptionScreen.brs"/>
   <interface>
-    <field id="content" type="node" onChange="showcontent"/>
+    <field id="content" type="node" onChange="showContent"/>
     <field id="backTrigger" type="boolean" value="false"/>
   </interface>
   <children >

@@ -1,5 +1,5 @@
 <component  name="itemContentNode" extends="ContentNode" >
   <interface >
-    <field id="image_1080_url" type="string" />
+    <field id="image1080Url" type="string" />
   </interface>
 </component>
