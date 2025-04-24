@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
  
 <component name="MarkupGridItem" extends="Group" >
-  <script type="text/brightscript" uri="markupGridItem.brs"/>
+  <script type="text/brightscript" uri="MarkupGridItem.brs"/>
   <interface>
     <field id="itemContent" type="node" onChange="showContent"/>
     <field id="focusPercent" type="float" onChange="showFocus"/> 

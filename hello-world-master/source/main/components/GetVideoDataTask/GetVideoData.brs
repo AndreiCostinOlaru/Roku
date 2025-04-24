@@ -14,12 +14,13 @@ function executeGetRequest(url as String) as Object
     request.setMessagePort(port)
     request.AsyncGetToString()
     msg = wait(0, port)
-
+    response = invalid
+    
     if isSuccessfulHttpResponse(msg)
         response = ParseJson(msg.GetString())
-
-        return response
     end if
+
+    return response
 end function
 
 function setUpHttpRequest(url as String) as Object
@@ -40,7 +41,7 @@ end function
 function setUpVideoContent(videoData as Object) as Object
     itemContent = CreateObject("roSGNode","ContentNode")
     drmParams = {
-        keySystem: "Widevine"
+        keySystem: "Widevine",
         licenseServerURL: "https://cwip-shaka-proxy.appspot.com/no_auth"
     }
     itemContent.id = videoData.id
