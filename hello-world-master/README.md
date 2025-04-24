@@ -5,7 +5,7 @@
 This project is a Roku sample app designed as a base for experimenting with Scene Graph architecture and BrightScript features. 
 
 ## How to Run This Sample
-* Zip the contents of the main file of this project and deploy to your roku device. Follow the developer set-up guide here for a quick guide on how to do so: https://blog.roku.com/developer/2016/02/04/developer-setup-guide/
+* Zip the contents of the main file of this project and deploy to your roku device. Follow the developer set-up guide here for a quick guide on how to do so: https://developer.roku.com/en-ca/docs/developer-program/getting-started/developer-setup.md
 
 ## Features
 * The main screen contains a layout group that contains a RowList and two buttons.
