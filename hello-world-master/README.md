@@ -5,7 +5,7 @@
 This project is a Roku sample app designed as a base for experimenting with Scene Graph architecture and BrightScript features. 
 
 ## How to Run This Sample
-* Zip the contents of the main file of this project and deploy to your roku device. Follow the developer set-up guide here for a quick guide on how to do so: https://developer.roku.com/en-ca/docs/developer-program/getting-started/developer-setup.md
+* Zip the contents of the main file of this project and deploy to your roku device. Follow the [developer set-up guide](https://developer.roku.com/en-ca/docs/developer-program/getting-started/developer-setup.md) here for a quick guide on how to do so. 
 
 ## Features
 * The main screen contains a layout group that contains a RowList and two buttons.
@@ -44,3 +44,24 @@ User Navigation:
 ## Packages
 This project uses bslint to enforce BrightScript code style and maintain clean, readable code. When cloning the project use **npm install**.
 
+## Testing
+[bslint (BrighterScript Lint)](https://github.com/rokucommunity/bslint)
+
+### Installation
+npm init -y #if package.json doesn't exist
+npm install brighterscript @rokucommunity/bslint
+
+in **bsconfig.json** add:
+{
+    "plugins": [ "@rokucommunity/bslint" ]
+}
+
+Run with: **npx bslint** (SyntaxError for brightscript)
+
+### Configuration
+in **bslint.json**:\
+{\
+    "rules": {},\
+    "globals": [],\
+    "ignores": []\
+}
