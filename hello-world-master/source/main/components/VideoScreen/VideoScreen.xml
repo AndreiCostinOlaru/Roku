@@ -1,7 +1,7 @@
 <?xml version = "1.0" encoding = "utf-8" ?>
  
 <component name="VideoScreen" extends="Group">
-  <script type="text/brightscript" uri="videoScreen.brs"/>
+  <script type="text/brightscript" uri="VideoScreen.brs"/>
   <interface>
     <field id="content" type="node" onChange="showContent"/>
     <field id="backTrigger" type="boolean" value="false"/>

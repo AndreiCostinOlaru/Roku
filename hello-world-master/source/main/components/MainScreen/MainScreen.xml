@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
 <component name="MainScreen" extends="Scene"> 
-  <script type="text/brightscript" uri="mainScreen.brs"/>
-  <script type="text/brightscript" uri="animationHelper.brs"/>
-  <script type="text/brightscript" uri="timerHelper.brs" />
+  <script type="text/brightscript" uri="MainScreen.brs"/>
+  <script type="text/brightscript" uri="../Helpers/AnimationHelper.brs"/>
+  <script type="text/brightscript" uri="../Helpers/TimerHelper.brs" />
   <customization suspendhandler="onMainSceneSuspend" />
   <customization resumehandler="onMainSceneResume" />
 	<children>
