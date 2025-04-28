@@ -1,3 +1,9 @@
 {
+    "rootDir": "source/main",
+    "files": [
+        "**/*"
+    ],
+    "stagingDir": "dist",
+    "sourceMap": true,
     "plugins": [ "@rokucommunity/bslint" ]
 }
