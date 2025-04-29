@@ -1,6 +1,4 @@
-const POKEMON_URL = "https://my-json-server.typicode.com/bogdanterzea/pokemon-server/photos"
-const CERTIFICATES_FILE = "common:/certs/ca-bundle.crt"
-const HEADER = "X-Roku-Reserved-Dev-Id"
+import "../Constants.bs"
 
 sub init()
 	m.top.functionName = "getData"
