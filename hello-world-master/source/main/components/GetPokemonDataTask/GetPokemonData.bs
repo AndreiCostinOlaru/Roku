@@ -1,9 +1,13 @@
+const POKEMON_URL = "https://my-json-server.typicode.com/bogdanterzea/pokemon-server/photos"
+const CERTIFICATES_FILE = "common:/certs/ca-bundle.crt"
+const HEADER = "X-Roku-Reserved-Dev-Id"
+
 sub init()
 	m.top.functionName = "getData"
 end sub
 
 sub getData()
-    pokemonPhotoJson = executeGetRequest("https://my-json-server.typicode.com/bogdanterzea/pokemon-server/photos")
+    pokemonPhotoJson = executeGetRequest(POKEMON_URL)
     rowContent = populateRowItems(pokemonPhotoJson)
     m.top.itemContent = rowContent
 end sub
@@ -27,8 +31,8 @@ function setUpHttpRequest(url as String) as Object
     request = CreateObject("roUrlTransfer")
     request.setMessagePort(CreateObject("roMessagePort"))
     request.SetUrl(url)
-    request.SetCertificatesFile("common:/certs/ca-bundle.crt")
-    request.AddHeader("X-Roku-Reserved-Dev-Id", "")
+    request.SetCertificatesFile(CERTIFICATES_FILE)
+    request.AddHeader(HEADER, "")
     request.InitClientCertificates()
 
     return request
