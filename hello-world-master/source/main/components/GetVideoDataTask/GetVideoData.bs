@@ -1,10 +1,12 @@
+import "../Constants.bs"
+
 sub init()
     m.top.functionName = "getData"
 end sub
 
 
 sub getData()
-    videoDataJson = executeGetRequest("https://my-json-server.typicode.com/bogdanterzea/pokemon-server/videos")
+    videoDataJson = executeGetRequest(VIDEO_URL)
     m.top.itemContent = setUpVideoContent(videoDataJson[0])
 end sub
 
@@ -27,8 +29,8 @@ function setUpHttpRequest(url as String) as Object
     request = CreateObject("roUrlTransfer")
     request.setMessagePort(CreateObject("roMessagePort"))
     request.SetUrl(url)
-    request.SetCertificatesFile("common:/certs/ca-bundle.crt")
-    request.AddHeader("X-Roku-Reserved-Dev-Id", "")
+    request.SetCertificatesFile(CERTIFICATES_FILE)
+    request.AddHeader(HEADER)
     request.InitClientCertificates()
     
     return request
