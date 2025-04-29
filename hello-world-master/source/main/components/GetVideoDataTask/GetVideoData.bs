@@ -30,7 +30,7 @@ function setUpHttpRequest(url as String) as Object
     request.setMessagePort(CreateObject("roMessagePort"))
     request.SetUrl(url)
     request.SetCertificatesFile(CERTIFICATES_FILE)
-    request.AddHeader(HEADER)
+    request.AddHeader(HEADER, "")
     request.InitClientCertificates()
     
     return request
