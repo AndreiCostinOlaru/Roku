@@ -1,0 +1,46 @@
+import "ScreenPoint.bs"
+
+class AnimationService
+
+    function createButtonsRowListAnimation(layoutGroup as Object) as Object
+        origin = new ScreenPoint(1000, 1000)
+        destination = new ScreenPoint(1000, 0)
+        return m.initializeTranslationAnimation(layoutGroup, origin, destination)
+    end function
+
+    function initializeTranslationAnimation(target as Object, origin as ScreenPoint, destination as ScreenPoint) as Object
+        translateAnim = m.createTranslationAnimation(1, "linear")
+        vector2DInterpolator = m.createPositionInterpolator(target, origin, destination)
+        translateAnim.appendChild(vector2DInterpolator)
+        return translateAnim
+    end function
+
+    function createTranslationAnimation(duration as Integer, easeFunction as String) as Object
+        translateAnim = createObject("roSGNode", "Animation")
+        translateAnim.duration = duration
+        translateAnim.easeFunction = easeFunction
+        return translateAnim
+    end function
+
+    function createPositionInterpolator(target as Object, origin as ScreenPoint, destination as ScreenPoint) as Object
+        interpolator = createObject("roSGNode", "Vector2DFieldInterpolator")
+        interpolator.key = [0.0, 0.5, 1.0]
+        interpolator.keyValue = m.generateKeyValues(origin, destination)
+        interpolator.fieldToInterp = target.id + ".translation"
+        interpolator.reverse = true
+        return interpolator
+    end function
+
+    function generateKeyValues(origin as ScreenPoint, destination as ScreenPoint) as Object
+        meanX = (origin.x + destination.x) / 2
+        meanY = (origin.y + destination.y) / 2
+        return [[origin.x, origin.y], [meanX, meanY], [destination.x, destination.y]]
+    end function
+
+    sub reverseStartAnimation(animation as Object)
+        vector2DFieldInterpolator = animation.getChild(0)
+        vector2DFieldInterpolator.reverse = not vector2DFieldInterpolator.reverse
+        animation.control = "start"
+    end sub
+
+end class

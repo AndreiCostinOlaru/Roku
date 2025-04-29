@@ -1,3 +1,5 @@
+import "../Helpers/AnimationService.bs"
+
 sub init()
   m.imageRowList = m.top.findNode("imageRowList")
   m.buttonVideo = m.top.findNode("buttonVideo")
@@ -38,7 +40,8 @@ sub initializeTimer()
 end sub
 
 sub initializeAnimations()
-  m.translationAnimation = createButtonsRowListAnimation(m.layoutGroup)
+  m.animationService = new AnimationService()
+  m.translationAnimation = m.animationService.createButtonsRowListAnimation(m.layoutGroup)
 end sub
 
 sub initializeTasks()
@@ -60,13 +63,13 @@ sub onFetchVideoData(event as Object)
 end sub
 
 sub moveFocusToButtons()
-  reverseStartAnimation(m.translationAnimation)
+  m.animationService.reverseStartAnimation(m.translationAnimation)
   m.buttonVideo.setFocus(true)
   stopTimer(m.rowListFocusTimer)
 end sub
 
 sub moveFocusToRowList()
-  reverseStartAnimation(m.translationAnimation)
+  m.animationService.reverseStartAnimation(m.translationAnimation)
   m.imageRowList.setFocus(true)
   startTimer(m.rowListFocusTimer)
 end sub
