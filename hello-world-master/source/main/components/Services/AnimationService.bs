@@ -1,4 +1,4 @@
-import "../models/ScreenPoint.bs"
+import "../Models/ScreenPoint.bs"
 
 class AnimationService
     private origin as ScreenPoint
@@ -17,6 +17,7 @@ class AnimationService
         translateAnim = m.createTranslationAnimation(1, "linear")
         vector2DInterpolator = m.createPositionInterpolator(target, origin, destination)
         translateAnim.appendChild(vector2DInterpolator)
+
         return translateAnim
     end function
 
@@ -24,6 +25,7 @@ class AnimationService
         translateAnim = createObject("roSGNode", "Animation")
         translateAnim.duration = duration
         translateAnim.easeFunction = easeFunction
+
         return translateAnim
     end function
 
@@ -33,12 +35,14 @@ class AnimationService
         interpolator.keyValue = m.generateKeyValues(origin, destination)
         interpolator.fieldToInterp = target.id + ".translation"
         interpolator.reverse = true
+
         return interpolator
     end function
 
     function generateKeyValues(origin as ScreenPoint, destination as ScreenPoint) as Object
         meanX = (origin.x + destination.x) / 2
         meanY = (origin.y + destination.y) / 2
+
         return [[origin.x, origin.y], [meanX, meanY], [destination.x, destination.y]]
     end function
 
