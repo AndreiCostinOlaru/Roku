@@ -1,11 +1,16 @@
 import "ScreenPoint.bs"
 
 class AnimationService
+    private origin as ScreenPoint
+    private destination as ScreenPoint
+
+    sub new(origin as ScreenPoint, destination as ScreenPoint)
+        m.origin = origin
+        m.destination = destination
+    end sub
 
     function createButtonsRowListAnimation(layoutGroup as Object) as Object
-        origin = new ScreenPoint(1000, 1000)
-        destination = new ScreenPoint(1000, 0)
-        return m.initializeTranslationAnimation(layoutGroup, origin, destination)
+        return m.initializeTranslationAnimation(layoutGroup, m.origin, m.destination)
     end function
 
     function initializeTranslationAnimation(target as Object, origin as ScreenPoint, destination as ScreenPoint) as Object

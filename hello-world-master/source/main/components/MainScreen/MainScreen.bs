@@ -40,7 +40,9 @@ sub initializeTimer()
 end sub
 
 sub initializeAnimations()
-  m.animationService = new AnimationService()
+  origin = ScreenPoint(1000, 1000)
+  destination = ScreenPoint(1000, 0)
+  m.animationService = new AnimationService(origin, destination)
   m.translationAnimation = m.animationService.createButtonsRowListAnimation(m.layoutGroup)
 end sub
 
