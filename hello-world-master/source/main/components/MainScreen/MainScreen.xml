@@ -2,7 +2,6 @@
 
 <component name="MainScreen" extends="Scene"> 
   <script type="text/brightscript" uri="MainScreen.bs"/>
-  <script type="text/brightscript" uri="../Helpers/TimerHelper.bs" />
   <customization suspendhandler="onMainSceneSuspend" />
   <customization resumehandler="onMainSceneResume" />
 	<children>

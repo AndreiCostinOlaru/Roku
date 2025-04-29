@@ -1,4 +1,5 @@
 import "../Helpers/AnimationService.bs"
+import "../Helpers/TimerService.bs"
 
 sub init()
   m.imageRowList = m.top.findNode("imageRowList")
@@ -35,8 +36,9 @@ sub runTasks()
 end sub
 
 sub initializeTimer()
-  m.rowListFocusTimer = createTimer(5, true)
-  startTimer(m.rowListFocusTimer)
+  m.timerService = new TimerService(5, true)
+  m.rowListFocusTimer = m.timerService.timer
+  m.timerService.startTimer()
 end sub
 
 sub initializeAnimations()
@@ -67,13 +69,13 @@ end sub
 sub moveFocusToButtons()
   m.animationService.reverseStartAnimation(m.translationAnimation)
   m.buttonVideo.setFocus(true)
-  stopTimer(m.rowListFocusTimer)
+  m.timerService.stopTimer()
 end sub
 
 sub moveFocusToRowList()
   m.animationService.reverseStartAnimation(m.translationAnimation)
   m.imageRowList.setFocus(true)
-  startTimer(m.rowListFocusTimer)
+  m.timerService.startTimer()
 end sub
 
 sub onButtonVideoSelected()
@@ -96,7 +98,7 @@ end sub
 sub onRowItemSelected(event as Object)
   data = event.getData()
   screenContent = m.imageRowList.content.getChild(data[0]).getChild(data[1])
-  stopTimer(m.rowListFocusTimer)
+  m.timerService.stopTimer() 
   navigateToDescriptionScreen(screenContent)
 end sub
 
@@ -110,7 +112,7 @@ end sub
 
 sub onBackFromDescriptionScreen()
   m.top.removeChild(m.newDescriptionScreen)
-  startTimer(m.rowListFocusTimer)
+  m.timerService.startTimer()
   m.imageRowList.setFocus(true)
 end sub
 
@@ -152,7 +154,7 @@ sub onRowListTimer(event as Object)
 end sub
 
 sub onRowListItemFocused(event as Object)
-  resetTimer(m.rowListFocusTimer, 5)
+  m.timerService.resetTimerDuration(5)
 end sub
 
 function onKeyEvent(key as String, press as Boolean) as Boolean
