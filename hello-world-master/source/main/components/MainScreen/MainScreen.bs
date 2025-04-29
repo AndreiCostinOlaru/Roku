@@ -1,5 +1,6 @@
 import "../Services/AnimationService.bs"
 import "../Services/TimerService.bs"
+import "../Constants.bs"
 
 sub init()
   m.imageRowList = m.top.findNode("imageRowList")
@@ -196,7 +197,7 @@ end function
 
 function createPosterPlaceholder() as Object
   placeholder = CreateObject("roSGNode","ContentNode")
-  placeholder.url = "pkg:/images/gray.png"
+  placeholder.url = PLACEHOLDER_URL  
 
   return placeholder
 end function
