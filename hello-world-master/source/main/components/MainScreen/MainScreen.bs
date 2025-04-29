@@ -1,5 +1,5 @@
-import "../Helpers/AnimationService.bs"
-import "../Helpers/TimerService.bs"
+import "../Services/AnimationService.bs"
+import "../Services/TimerService.bs"
 
 sub init()
   m.imageRowList = m.top.findNode("imageRowList")

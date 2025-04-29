@@ -1,4 +1,4 @@
-import "ScreenPoint.bs"
+import "../models/ScreenPoint.bs"
 
 class AnimationService
     private origin as ScreenPoint
