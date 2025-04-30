@@ -1,5 +1,4 @@
 import "../Services/AnimationService.bs"
-import "../Services/TimerService.bs"
 import "../Constants.bs"
 
 sub init()
@@ -37,9 +36,8 @@ sub runTasks()
 end sub
 
 sub initializeTimer()
-  m.timerService = new TimerService(5, true)
-  m.rowListFocusTimer = m.timerService.timer
-  m.timerService.startTimer()
+  m.rowListFocusTimer = createTimer(5, true)
+  startTimer(m.rowListFocusTimer)
 end sub
 
 sub initializeAnimations()
@@ -70,13 +68,13 @@ end sub
 sub moveFocusToButtons()
   m.animationService.reverseStartAnimation(m.translationAnimation)
   m.buttonVideo.setFocus(true)
-  m.timerService.stopTimer()
+  stopTimer(m.rowListFocusTimer)
 end sub
 
 sub moveFocusToRowList()
   m.animationService.reverseStartAnimation(m.translationAnimation)
   m.imageRowList.setFocus(true)
-  m.timerService.startTimer()
+  startTimer(m.rowListFocusTimer)
 end sub
 
 sub onButtonVideoSelected()
@@ -99,7 +97,7 @@ end sub
 sub onRowItemSelected(event as Object)
   data = event.getData()
   screenContent = m.imageRowList.content.getChild(data[0]).getChild(data[1])
-  m.timerService.stopTimer() 
+  stopTimer(m.rowListFocusTimer) 
   navigateToDescriptionScreen(screenContent)
 end sub
 
@@ -113,7 +111,7 @@ end sub
 
 sub onBackFromDescriptionScreen()
   m.top.removeChild(m.newDescriptionScreen)
-  m.timerService.startTimer()
+  startTimer(m.rowListFocusTimer)
   m.imageRowList.setFocus(true)
 end sub
 
@@ -155,7 +153,21 @@ sub onRowListTimer(event as Object)
 end sub
 
 sub onRowListItemFocused(event as Object)
-  m.timerService.resetTimerDuration(5)
+  resetTimerDuration(m.rowListFocusTimer, 5)
+end sub
+
+sub startTimer(timer as Object)
+  timer.control = "start"
+end sub
+
+sub stopTimer(timer as Object)
+  timer.control = "stop"
+end sub
+
+sub resetTimerDuration(timer as Object, duration as Integer)
+  stopTimer(timer)
+  timer.duration = duration
+  startTimer(timer)
 end sub
 
 function onKeyEvent(key as String, press as Boolean) as Boolean
@@ -204,4 +216,12 @@ end function
 
 function isAnyButtonFocused() as Boolean
   return m.buttonVideo.hasFocus() or m.buttonMarkupGridScreen.hasFocus()
+end function
+
+function createTimer(duration as integer, repeat as boolean)
+  timer = createObject("roSGNode", "Timer")
+  timer.duration = duration
+  timer.repeat = repeat
+  
+  return timer
 end function
