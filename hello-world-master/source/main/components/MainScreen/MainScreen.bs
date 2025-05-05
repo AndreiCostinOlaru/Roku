@@ -1,4 +1,5 @@
 import "../Services/AnimationService.bs"
+import "../Services/NavigationService.bs"
 import "../Constants.bs"
 
 sub init()
@@ -13,6 +14,8 @@ sub init()
   initializeTimer()
   setUpObservedFields()
   runTasks()
+
+  m.navigationService = new NavigationService(m.top)
 end sub
 
 sub initializeUI()
@@ -78,15 +81,7 @@ sub moveFocusToRowList()
 end sub
 
 sub onButtonVideoSelected()
-  navigateToVideoScreen(m.videoData)
-end sub
-
-sub navigateToVideoScreen(screenContent as Object)
-  m.newVideoScreen = CreateObject("roSGNode", "VideoScreen")
-  m.newVideoScreen.content = screenContent
-  m.newVideoScreen.ObserveField("backTrigger", "onBackFromVideoScreen")
-  m.top.appendChild(m.newVideoScreen)
-  m.newVideoScreen.setFocus(true)
+  m.navigationService.navigateTo("VideoScreen", m.videoData, m.buttonVideo)
 end sub
 
 sub onBackFromVideoScreen()
@@ -98,15 +93,7 @@ sub onRowItemSelected(event as Object)
   data = event.getData()
   screenContent = m.imageRowList.content.getChild(data[0]).getChild(data[1])
   stopTimer(m.rowListFocusTimer) 
-  navigateToDescriptionScreen(screenContent)
-end sub
-
-sub navigateToDescriptionScreen(screenContent as Object)
-  m.newDescriptionScreen = CreateObject("roSGNode", "DescriptionScreen")
-  m.newDescriptionScreen.content = screenContent
-  m.newDescriptionScreen.ObserveField("backTrigger", "onBackFromDescriptionScreen")
-  m.top.appendChild(m.newDescriptionScreen)
-  m.newDescriptionScreen.setFocus(true)
+  m.navigationService.navigateTo("DescriptionScreen", screenContent, m.imageRowList)
 end sub
 
 sub onBackFromDescriptionScreen()
@@ -116,15 +103,7 @@ sub onBackFromDescriptionScreen()
 end sub
 
 sub onbuttonMarkupGridScreenSelected()
-  navigateToMarkupGridScreen(m.markupGridData)
-end sub
-
-sub navigateToMarkupGridScreen(screenContent as Object)
-  m.newMarkupGridScreen = CreateObject("roSGNode", "MarkupGridScreen")
-  m.newMarkupGridScreen.content = screenContent
-  m.newMarkupGridScreen.ObserveField("backTrigger", "onBackFromMarkupGridScreen")
-  m.top.appendChild(m.newMarkupGridScreen)
-  m.newMarkupGridScreen.setFocus(true)
+  m.navigationService.navigateTo("MarkupGridScreen", m.markupGridData, m.buttonMarkupGridScreen)
 end sub
 
 sub onBackFromMarkupGridScreen()

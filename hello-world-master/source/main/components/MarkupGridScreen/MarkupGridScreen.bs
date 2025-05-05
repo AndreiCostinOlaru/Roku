@@ -1,6 +1,9 @@
+import "../Services/NavigationService.bs"
+
 sub init()
     m.background = m.top.findNode("background")
     m.markupGrid = m.top.findNode("markupGrid")
+    m.navigationService = new NavigationService(m.top)
 end sub
 
 sub showContent(event as Object)
@@ -15,7 +18,7 @@ function onKeyEvent(key as String, press as Boolean) as Boolean
 
     if press
         if key ="back"
-            m.top.backTrigger = true
+            m.navigationService.navigateBack()
             handled = true
         end if
     end if

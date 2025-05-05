@@ -1,6 +1,9 @@
+import "../Services/NavigationService.bs"
+
 sub init()
     m.poster = m.top.findNode("itemPoster")
     m.label = m.top.findNode("description")
+    m.navigationService = new NavigationService(m.top)
 end sub
 
 sub showContent(event as Object)
@@ -9,13 +12,12 @@ sub showContent(event as Object)
     m.label.text = data.description
 end sub
 
-
 function onKeyEvent(key as String, press as Boolean) as Boolean
     handled = false
     
     if press
         if key ="back"
-            m.top.backTrigger = true
+            m.navigationService.navigateBack()
             handled = true
         end if
     end if
