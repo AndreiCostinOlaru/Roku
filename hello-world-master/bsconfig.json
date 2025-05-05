@@ -1,6 +1,6 @@
 {
     "rootDir": "source/main",
-    "host": "192.168.20.88",
+    "host": "192.168.20.9",
     "password": "rokudev",
     "deploy": true,
     "files": [
