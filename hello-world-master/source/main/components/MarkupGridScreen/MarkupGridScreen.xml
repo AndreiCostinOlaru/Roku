@@ -3,7 +3,7 @@
 <component name="MarkupGridScreen" extends="BaseScreen">
   <script type="text/brightscript" uri="MarkupGridScreen.bs"/>
   <interface>
-    <field id="content" type="node" onChange="showContent"/>
+    <field id="content" type="node" onChange="showContent" />
   </interface>
   <children >
     <Rectangle 

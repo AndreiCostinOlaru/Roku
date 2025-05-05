@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
 <component name="MainScreen" extends="Scene"> 
-  <script type="text/brightscript" uri="MainScreen.bs"/>
+  <script type="text/brightscript" uri="MainScreen.bs" />
   <customization suspendhandler="onMainSceneSuspend" />
   <customization resumehandler="onMainSceneResume" />
 	<children>
@@ -15,23 +15,20 @@
         rowItemSpacing="[ [40, 0]]" 
         rowFocusAnimationStyle="fixedFocusWrap"
         showRowLabel="[true]"
-        rowLabelOffset="[[0, 20]]"
-      />
+        rowLabelOffset="[[0, 20]]" />
       <LayoutGroup layoutDirection="horiz" itemSpacings="[20]">
         <Button
           id="buttonVideo"
           text="ok"
           showFocusFootprint="true"
           minWidth="120" 
-          height="120"
-        />
+          height="120" />
         <Button
           id="buttonMarkupGridScreen"
           text="To MarkupGrid screen"
           showFocusFootprint="true"
           minWidth="120" 
-          height="120"
-        />
+          height="120" />
       </LayoutGroup>
     </LayoutGroup>
   </children>

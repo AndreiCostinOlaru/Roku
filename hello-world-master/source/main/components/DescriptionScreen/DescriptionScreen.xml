@@ -5,7 +5,7 @@
   <interface>
     <field id="content" type="node" onChange="showContent"/>
   </interface>
-  <children >
+  <children>
     <Poster 
       id="itemPoster" 
       width="1920" 

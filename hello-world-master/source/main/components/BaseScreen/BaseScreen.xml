@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
  
 <component name="BaseScreen" extends="Group">
-  <interface>
-    <field id="parent" type="node"/>
-  </interface>
-  <children></children>
+    <interface>
+        <field id="parent" type="node"/>
+    </interface>
+    <children />
 </component>
