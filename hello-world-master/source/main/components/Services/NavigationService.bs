@@ -1,0 +1,22 @@
+class NavigationService
+    topNode as Object
+
+    sub new(topNode as Object)
+        m.topNode = topNode
+    end sub
+
+    sub navigateBack()
+        screen = m.topNode.getParent()
+        parent = m.topNode.parent
+        screen.removeChild(m.topNode)
+        parent.setFocus(true)
+    end sub
+
+    sub navigateTo(screenId as String, content as Object, parent as Object)
+        screen = CreateObject("roSGNode", screenId)
+        screen.content = content
+        screen.parent = parent
+        m.topNode.appendChild(screen)
+        screen.setFocus(true)
+    end sub
+end class
