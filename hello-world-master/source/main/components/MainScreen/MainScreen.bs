@@ -7,20 +7,40 @@ sub init()
   m.buttonVideo = m.top.findNode("buttonVideo")
   m.layoutGroup = m.top.findNode("layoutGroup")
   m.buttonMarkupGridScreen = m.top.findNode("buttonMarkupGridScreen")
-  
+  m.navigationService = new NavigationService(m.top)
+
+  initialSetup()
+end sub
+
+sub initialSetup()
   initializeUI()
   initializeTasks()
   initializeAnimations()
   initializeTimer()
   setUpObservedFields()
   runTasks()
-
-  m.navigationService = new NavigationService(m.top)
 end sub
 
 sub initializeUI()
   m.imageRowList.setFocus(true)
   m.imageRowList.content = populateImageRowList()
+end sub
+
+sub initializeTasks()
+  m.getPokemonDataTask = CreateObject("roSGNode", "GetPokemonDataTask")
+  m.getVideoData = CreateObject("roSGNode", "GetVideoDataTask")
+end sub
+
+sub initializeAnimations()
+  origin = ScreenPoint(1000, 1000)
+  destination = ScreenPoint(1000, 0)
+  m.animationService = new AnimationService(origin, destination)
+  m.translationAnimation = m.animationService.createButtonsRowListAnimation(m.layoutGroup)
+end sub
+
+sub initializeTimer()
+  m.rowListFocusTimer = createTimer(5, true)
+  startTimer(m.rowListFocusTimer)
 end sub
 
 sub setUpObservedFields()
@@ -36,23 +56,6 @@ end sub
 sub runTasks()
   m.getPokemonDataTask.control = "RUN"
   m.getVideoData.control = "RUN"
-end sub
-
-sub initializeTimer()
-  m.rowListFocusTimer = createTimer(5, true)
-  startTimer(m.rowListFocusTimer)
-end sub
-
-sub initializeAnimations()
-  origin = ScreenPoint(1000, 1000)
-  destination = ScreenPoint(1000, 0)
-  m.animationService = new AnimationService(origin, destination)
-  m.translationAnimation = m.animationService.createButtonsRowListAnimation(m.layoutGroup)
-end sub
-
-sub initializeTasks()
-  m.getPokemonDataTask = CreateObject("roSGNode", "GetPokemonDataTask")
-  m.getVideoData = CreateObject("roSGNode", "GetVideoDataTask")
 end sub
 
 sub onFetchPokemonData(event as Object)
