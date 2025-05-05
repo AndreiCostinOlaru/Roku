@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/AndreiCostinOlaru/Roku#readme",
   "dependencies": {
-    "@rokucommunity/bslint": "^0.8.28",
-    "brighterscript": "^0.69.5"
+    "@rokucommunity/bslint": "^0.8.29",
+    "brighterscript": "^0.69.7"
   }
 }
