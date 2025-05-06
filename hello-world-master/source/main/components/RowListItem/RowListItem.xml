@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
  
-<component name="RowListItem" extends="Group" >
-  <script type="text/brightscript" uri="RowlistItem.brs"/>
+<component name="RowListItem" extends="Group">
+  <script type="text/brightscript" uri="RowlistItem.bs" />
   <interface>
-    <field id="itemContent" type="node" onChange="showContent"/>
+    <field id="itemContent" type="node" onChange="showContent" />
   </interface>
   <children >
     <Poster 
       id="itemPoster" 
       width="450" 
-      height="240" 
-    />
+      height="240" />
   </children>
 </component>

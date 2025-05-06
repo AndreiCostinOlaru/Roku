@@ -1,0 +1,9 @@
+class ScreenPoint
+    private x as integer
+    private y as integer
+
+    sub new(x = 0 as integer, y = 0 as integer)
+        m.x = x
+        m.y = y
+    end sub
+end class

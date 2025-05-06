@@ -1,0 +1,5 @@
+const POKEMON_URL = "https://my-json-server.typicode.com/bogdanterzea/pokemon-server/photos"
+const VIDEO_URL = "https://my-json-server.typicode.com/bogdanterzea/pokemon-server/photos"
+const CERTIFICATES_FILE = "common:/certs/ca-bundle.crt"
+const HEADER = "X-Roku-Reserved-Dev-Id"
+const PLACEHOLDER_URL = "pkg:/images/gray.png"

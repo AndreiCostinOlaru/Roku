@@ -1,13 +1,6 @@
-'*************************************************************
-'** Hello World example 
-'** Copyright (c) 2015 Roku, Inc.  All rights reserved.
-'** Use of the Roku Platform is subject to the Roku SDK License Agreement:
-'** https://docs.roku.com/doc/developersdk/en-us
-'*************************************************************
-
 sub Main(args as Dynamic)
     print "in showChannelSGScreen"
-    'Indicate this is a Roku SceneGraph application'
+
     screen = CreateObject("roSGScreen")
     inputObject=CreateObject("roInput")
 
