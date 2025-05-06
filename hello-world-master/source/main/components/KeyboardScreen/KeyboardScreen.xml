@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+ 
+<component name="KeyboardScreen" extends="BaseScreen">
+  <script type="text/brightscript" uri="KeyboardScreen.bs" />
+  <interface>
+    <field id="content" type="node" onChange="showContent" />
+  </interface>
+  <children>
+    <Rectangle 
+      id="background" 
+      width="1920" 
+      height="1080" />
+    <LayoutGroup layoutDirection="vert" horizAlignment="center" translation="[960, 0]">
+      <Keyboard id="keyboard" />
+      <Label 
+        id="searchResults"
+        height="500"
+        width="200"
+        font="font:MediumBoldSystemFont"
+        horizAlign="left"
+        vertAlign="center"
+        wrap="true" />
+    </LayoutGroup>
+  </children>
+</component>

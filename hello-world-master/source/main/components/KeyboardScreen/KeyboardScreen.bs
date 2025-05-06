@@ -1,0 +1,51 @@
+import "../Services/NavigationService.bs"
+
+sub init()
+    m.background = m.top.findNode("background")
+    m.keyboard = m.top.findNode("keyboard")
+    m.searchResults = m.top.findNode("searchResults")
+
+    m.keyboard.ObserveField("text", "onKeyboardTextChange")
+
+    m.navigationService = new NavigationService(m.top)
+end sub
+
+sub showContent(event as Object)
+    m.pokemonData = event.getData()
+    m.background.color = "#808080"
+    m.keyboard.setFocus(true)
+end sub
+
+sub onKeyboardTextChange(event as Object)
+    query = event.getData()
+    searchResults = ""
+
+    if query <> ""
+        for i=0 to 6
+            pokemon = m.pokemonData.getChild(i)
+
+            if pokemon.title.Instr(0, query) <> -1 or pokemon.description.Instr(0, query) <> -1
+                searchResults += (pokemon.title+" ")
+            end if
+        end for
+    end if
+
+    if searchResults <> ""
+        m.searchResults.text = "Results:"+ chr(10) + searchResults
+    else 
+        m.searchResults.text = "No results"
+    end if
+end sub
+
+function onKeyEvent(key as String, press as Boolean) as Boolean
+    handled = false
+    
+    if press
+        if key = "back"
+            m.navigationService.navigateBack()
+            handled = true
+        end if
+    end if
+    
+    return handled
+end function
