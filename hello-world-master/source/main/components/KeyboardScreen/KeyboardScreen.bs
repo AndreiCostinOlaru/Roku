@@ -18,21 +18,25 @@ end sub
 
 sub onKeyboardTextChange(event as Object)
     query = event.getData()
-    searchResults = ""
 
-    if query <> ""
-        for i=0 to 6
-            pokemon = m.pokemonData.getChild(i)
-
-            if pokemon.title.Instr(0, query) <> -1 or pokemon.description.Instr(0, query) <> -1
-                searchResults += (pokemon.title+" ")
-            end if
-        end for
+    if query = ""
+        m.searchResults.text = "No results"
+        return
     end if
 
-    if searchResults <> ""
-        m.searchResults.text = "Results:"+ chr(10) + searchResults
-    else 
+    results = []
+
+    for i = 0 to 6
+        pokemon = m.pokemonData.getChild(i)
+
+        if pokemon.title.Instr(0, query) <> -1 or pokemon.description.Instr(0, query) <> -1
+            results.push(pokemon.title)
+        end if
+    end for
+
+    if results.Count() > 0
+        m.searchResults.text = "Results:" + chr(10) + results.Join(" ")
+    else
         m.searchResults.text = "No results"
     end if
 end sub
