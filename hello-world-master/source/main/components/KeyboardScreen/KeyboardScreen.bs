@@ -3,7 +3,8 @@ import "../Services/NavigationService.bs"
 sub init()
     m.background = m.top.findNode("background")
     m.keyboard = m.top.findNode("keyboard")
-    m.searchResults = m.top.findNode("searchResults")
+    m.searchResultsLabel = m.top.findNode("searchResultsLabel")
+    m.markupGrid = m.top.findNode("markupGrid")
 
     m.keyboard.ObserveField("text", "onKeyboardTextChange")
 
@@ -12,34 +13,70 @@ end sub
 
 sub showContent(event as Object)
     m.pokemonData = event.getData()
-    m.background.color = "#808080"
+    m.markupGrid.content = cloneContentNode(m.pokemonData)
+
+    m.background.color = "0x808080FF"
     m.keyboard.setFocus(true)
 end sub
 
 sub onKeyboardTextChange(event as Object)
     query = event.getData()
+    results = CreateObject("roSGNode","ContentNode")
+    childCount = m.pokemonData.getChildCount()
+    pokemonData = cloneContentNode(m.pokemonData)
 
     if query = ""
-        m.searchResults.text = "No results"
+        m.markupGrid.content = pokemonData
+        m.searchResultsLabel.text = "Pokemons"
+
         return
     end if
 
-    results = []
+    for i = 0 to childCount - 1
+        pokemon = pokemonData.getChild(i)
 
-    for i = 0 to 6
-        pokemon = m.pokemonData.getChild(i)
-
-        if pokemon.title.Instr(0, query) <> -1 or pokemon.description.Instr(0, query) <> -1
-            results.push(pokemon.title)
+        if pokemon <> invalid
+            if pokemonContainsQuery(pokemon, query) then results.appendChild(pokemon)
         end if
     end for
 
-    if results.Count() > 0
-        m.searchResults.text = "Results:" + chr(10) + results.Join(" ")
+    if results.getChildCount() > 0
+        m.searchResultsLabel.text = "Pokemons"
     else
-        m.searchResults.text = "No results"
+        m.searchResultsLabel.text = "No results"
     end if
+
+    m.markupGrid.content = results
 end sub
+
+function pokemonContainsQuery(pokemon as Object, query as String)
+    return LCase(pokemon.title).Instr(0, LCase(query)) <> -1 or LCase(pokemon.description).Instr(0, LCase(query)) <> -1
+end function
+
+function cloneContentNode(sourceNode as Object) as Object
+    if sourceNode = invalid then return invalid
+
+    cloneRoot = CreateObject("roSGNode", "ContentNode")
+    childCount = sourceNode.getChildCount()
+
+    for i = 0 to childCount - 1
+        original = sourceNode.getChild(i)
+
+        if original <> invalid
+            clone = CreateObject("roSGNode", "ItemContentNode")
+
+            if original.title <> invalid then clone.title = original.title
+            if original.description <> invalid then clone.description = original.description
+            if original.id <> invalid then clone.hdPosterUrl = original.hdPosterUrl
+            if original.url <> invalid then clone.url = original.url
+            if original.image1080Url <> invalid then clone.image1080Url = original.image1080Url
+
+            cloneRoot.appendChild(clone)
+        end if
+    end for
+
+    return cloneRoot
+end function
 
 function onKeyEvent(key as String, press as Boolean) as Boolean
     handled = false
@@ -49,9 +86,9 @@ function onKeyEvent(key as String, press as Boolean) as Boolean
             m.navigationService.navigateBack()
             handled = true
         else if key = "right" and m.keyboard.keyGrid.hasFocus()
-            m.searchResults.setFocus(true)
+            m.markupGrid.setFocus(true)
             handled = true
-        else if key = "left" and m.searchResults.hasFocus()
+        else if key = "left" and m.markupGrid.hasFocus()
             m.keyboard.setFocus(true)
             handled = true
         end if
