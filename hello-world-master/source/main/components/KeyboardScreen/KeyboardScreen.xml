@@ -10,8 +10,8 @@
       id="background" 
       width="1920" 
       height="1080" />
-    <LayoutGroup layoutDirection="vert" horizAlignment="center" translation="[960, 0]">
-      <Keyboard id="keyboard" />
+    <LayoutGroup layoutDirection="horiz" horizAlignment="center" translation="[480, 20]" itemSpacings="[25]">
+      <DynamicMiniKeyboard id="keyboard" />
       <Label 
         id="searchResults"
         height="500"
