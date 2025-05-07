@@ -10,7 +10,7 @@
       id="background" 
       width="1920" 
       height="1080" />
-    <LayoutGroup layoutDirection="horiz" horizAlignment="center" translation="[960, 25]" itemSpacings="[25]">
+    <LayoutGroup layoutDirection="horiz" horizAlignment="center" vertAlignment="center" translation="[960, 540]" itemSpacings="[25]">
       <DynamicMiniKeyboard id="keyboard" />
       <LayoutGroup layoutDirection="vert">
         <Label 
