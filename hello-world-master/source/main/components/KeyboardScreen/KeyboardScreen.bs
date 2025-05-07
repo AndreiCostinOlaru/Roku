@@ -44,6 +44,12 @@ function onKeyEvent(key as String, press as Boolean) as Boolean
         if key = "back"
             m.navigationService.navigateBack()
             handled = true
+        else if key = "right" and m.keyboard.keyGrid.hasFocus()
+            m.searchResults.setFocus(true)
+            handled = true
+        else if key = "left" and m.searchResults.hasFocus()
+            m.keyboard.setFocus(true)
+            handled = true
         end if
     end if
     
