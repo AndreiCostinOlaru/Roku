@@ -10,26 +10,24 @@
       id="background" 
       width="1920" 
       height="1080" />
-    <LayoutGroup layoutDirection="horiz" horizAlignment="center" vertAlignment="center" translation="[960, 540]" itemSpacings="[25]">
-      <DynamicMiniKeyboard id="keyboard" />
-      <LayoutGroup layoutDirection="vert">
-        <Label 
-          id="searchResultsLabel"
-          height="100"
-          width="200"
-          horizAlign="left"
-          vertAlign="center"
-          text="Pokemons"
-          wrap="true" />
-        <MarkupGrid 
-          id="markupGrid"
-          itemComponentName="KeyboardMarkupGridItem" 
-          numColumns="4" 
-          numRows="2" 
-          itemSize="[ 250, 380 ]" 
-          itemSpacing="[ 20, 40 ]" 
-          drawFocusFeedback="false" />
-      </LayoutGroup>
-    </LayoutGroup>
+    <DynamicMiniKeyboard id="keyboard" translation="[100, 200]"/>
+    <Label 
+      id="searchResultsLabel"
+      height="100"
+      width="200"
+      horizAlign="left"
+      vertAlign="center"
+      text="Pokemons"
+      wrap="true"
+      translation="[750, 50]" />
+    <MarkupGrid 
+      id="markupGrid"
+      itemComponentName="KeyboardMarkupGridItem" 
+      numColumns="4" 
+      numRows="2" 
+      itemSize="[ 250, 380 ]" 
+      itemSpacing="[ 20, 40 ]" 
+      drawFocusFeedback="false"
+      translation="[750, 150]" />
   </children>
 </component>
