@@ -153,18 +153,22 @@ function onKeyEvent(key as String, press as Boolean) as Boolean
     else if key = "up" and isAnyButtonFocused()
       handled = true
       moveFocusToRowList()
-    else if key = "right" and m.buttonVideo.hasFocus()
-      handled = true
-      m.buttonMarkupGridScreen.setFocus(true)
-    else if key ="right" and m.buttonMarkupGridScreen.hasFocus()
-      handled = true
-      m.buttonKeyboardScreen.setFocus(true)
-    else if key = "left" and m.buttonMarkupGridScreen.hasFocus()
-      handled = true
-      m.buttonVideo.setFocus(true)
-    else if key = "left" and m.buttonKeyboardScreen.hasFocus()
-      handled = true
-      m.buttonMarkupGridScreen.setFocus(true)
+    else if key = "right"
+      if m.buttonVideo.hasFocus()
+        handled = true
+        m.buttonMarkupGridScreen.setFocus(true)
+      else if m.buttonMarkupGridScreen.hasFocus()
+        handled = true
+        m.buttonKeyboardScreen.setFocus(true)
+      end if      
+    else if key = "left" 
+      if m.buttonMarkupGridScreen.hasFocus()
+        handled = true
+        m.buttonVideo.setFocus(true)
+      else if m.buttonKeyboardScreen.hasFocus()
+        handled = true
+        m.buttonMarkupGridScreen.setFocus(true)
+      end if
     end if
   end if
 
