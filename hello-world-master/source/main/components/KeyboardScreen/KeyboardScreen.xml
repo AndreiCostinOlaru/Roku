@@ -10,7 +10,7 @@
       id="background" 
       width="1920" 
       height="1080" />
-    <DynamicMiniKeyboard id="keyboard" translation="[100, 200]"/>
+    <DynamicMiniKeyboard id="keyboard" translation="[100, 200]" />
     <Label 
       id="searchResultsLabel"
       height="100"
