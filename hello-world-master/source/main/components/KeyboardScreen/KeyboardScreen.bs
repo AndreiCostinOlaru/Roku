@@ -13,7 +13,7 @@ end sub
 
 sub showContent(event as Object)
     m.pokemonData = event.getData()
-    m.markupGrid.content = cloneContentNode(m.pokemonData)
+    m.markupGrid.content = cloneNodeTree(m.pokemonData)
 
     m.background.color = "0x808080FF"
     m.keyboard.setFocus(true)
@@ -21,7 +21,7 @@ end sub
 
 sub onKeyboardTextChange(event as Object)
     query = event.getData()
-    pokemonData = cloneContentNode(m.pokemonData)
+    pokemonData = cloneNodeTree(m.pokemonData)
     m.searchResultsLabel.text = "Pokemons"
     m.markupGrid.content = pokemonData
 
@@ -50,7 +50,7 @@ function pokemonContainsQuery(pokemon as Object, query as String) as Boolean
     return LCase(pokemon.title).Instr(0, LCase(query)) <> -1 or LCase(pokemon.description).Instr(0, LCase(query)) <> -1
 end function
 
-function cloneContentNode(sourceNode as Object) as Object
+function cloneNodeTree(sourceNode as Object) as Object
     if sourceNode = invalid then return invalid
 
     cloneRoot = CreateObject("roSGNode", "ContentNode")
@@ -60,20 +60,20 @@ function cloneContentNode(sourceNode as Object) as Object
         original = sourceNode.getChild(i)
 
         if original <> invalid
-            clone = CreateObject("roSGNode", "ItemContentNode")
-
-            if original.title <> invalid then clone.title = original.title
-            if original.description <> invalid then clone.description = original.description
-            if original.id <> invalid then clone.hdPosterUrl = original.hdPosterUrl
-            if original.url <> invalid then clone.url = original.url
-            if original.image1080Url <> invalid then clone.image1080Url = original.image1080Url
-
+            clone = cloneNode(original)
             cloneRoot.appendChild(clone)
         end if
     end for
 
     return cloneRoot
 end function
+
+function cloneNode(oldNode as Object) as Object
+    newNode = createObject("roSGNode", oldNode.subtype())
+    newNode.setFields(oldNode.getFields())
+
+    return newNode
+  end function
 
 function onKeyEvent(key as String, press as Boolean) as Boolean
     handled = false
