@@ -61,13 +61,12 @@ function cloneContentNode(sourceNode as Object) as Object
 
         if original <> invalid
             clone = CreateObject("roSGNode", "ItemContentNode")
-            
-            if original.title <> invalid then clone.title = original.title
-            if original.description <> invalid then clone.description = original.description
-            if original.id <> invalid then clone.hdPosterUrl = original.hdPosterUrl
-            if original.url <> invalid then clone.url = original.url
-            if original.image1080Url <> invalid then clone.image1080Url = original.image1080Url
+            keys = ["title","description", "id", "url", "image1080Url"]
 
+            for each key in keys
+                if original[key] <> invalid then clone[key] = original[key]
+            end for
+            
             cloneRoot.appendChild(clone)
         end if
     end for
