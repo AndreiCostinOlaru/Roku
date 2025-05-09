@@ -49,7 +49,7 @@ sub onKeyboardTextChange(event as Object)
     m.markupGrid.content = results
 end sub
 
-function pokemonContainsQuery(pokemon as Object, query as String)
+function pokemonContainsQuery(pokemon as Object, query as String) as Boolean
     return LCase(pokemon.title).Instr(0, LCase(query)) <> -1 or LCase(pokemon.description).Instr(0, LCase(query)) <> -1
 end function
 
