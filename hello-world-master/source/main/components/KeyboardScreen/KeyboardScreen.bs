@@ -21,33 +21,30 @@ end sub
 
 sub onKeyboardTextChange(event as Object)
     query = event.getData()
-    results = CreateObject("roSGNode","ContentNode")
-    childCount = m.pokemonData.getChildCount()
     pokemonData = cloneContentNode(m.pokemonData)
+    m.searchResultsLabel.text = "Pokemons"
+    m.markupGrid.content = pokemonData
 
-    if query = ""
-        m.markupGrid.content = pokemonData
-        m.searchResultsLabel.text = "Pokemons"
+    if query <> ""
+        results = CreateObject("roSGNode", "ContentNode")
+        childCount = pokemonData.getChildCount()
 
-        return
-    end if
+        for i = 0 to childCount - 1
+            pokemon = pokemonData.getChild(i)
 
-    for i = 0 to childCount - 1
-        pokemon = pokemonData.getChild(i)
+            if pokemon <> invalid and pokemonContainsQuery(pokemon, query)
+                results.appendChild(pokemon)
+            end if
+        end for
 
-        if pokemon <> invalid
-            if pokemonContainsQuery(pokemon, query) then results.appendChild(pokemon)
+        m.markupGrid.content = results
+
+        if results.getChildCount() = 0
+            m.searchResultsLabel.text = "No results"
         end if
-    end for
-
-    if results.getChildCount() > 0
-        m.searchResultsLabel.text = "Pokemons"
-    else
-        m.searchResultsLabel.text = "No results"
     end if
-
-    m.markupGrid.content = results
 end sub
+
 
 function pokemonContainsQuery(pokemon as Object, query as String) as Boolean
     return LCase(pokemon.title).Instr(0, LCase(query)) <> -1 or LCase(pokemon.description).Instr(0, LCase(query)) <> -1
