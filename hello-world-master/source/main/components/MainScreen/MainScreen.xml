@@ -29,6 +29,12 @@
           showFocusFootprint="true"
           minWidth="120" 
           height="120" />
+        <Button
+          id="buttonKeyboardScreen"
+          text="To Keyboard screen"
+          showFocusFootprint="true"
+          minWidth="120" 
+          height="120" />
       </LayoutGroup>
     </LayoutGroup>
   </children>

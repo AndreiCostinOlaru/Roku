@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+ 
+<component name="KeyboardMarkupGridItem" extends="Group">
+  <script type="text/brightscript" uri="KeyboardMarkupGridItem.bs" />
+  <interface>
+    <field id="itemContent" type="node" onChange="showContent" />
+    <field id="focusPercent" type="float" onChange="showFocus" /> 
+  </interface>
+  <children>
+    <Poster 
+      id="background" 
+      width="250" 
+      height="380"
+      opacity="0" />
+    <LayoutGroup layoutDirection="vert" horizAlignment="center" itemSpacings="[10]" translation="[125, 10]">
+      <MaskGroup id="roundedMask">
+        <Poster id="itemPoster" width="225" height="310" />
+      </MaskGroup>
+      <Label 
+        id="itemName"
+        font="font:MediumBoldSystemFont"
+        horizAlign="center"
+        vertAlign="center"
+        height="50"
+        font="font:MediumBoldSystemFont" />
+    </LayoutGroup>  
+  </children>
+</component>

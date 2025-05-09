@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
  
 <component name="DescriptionScreen" extends="BaseScreen">
-  <script type="text/brightscript" uri="DescriptionScreen.bs"/>
+  <script type="text/brightscript" uri="DescriptionScreen.bs" />
   <interface>
-    <field id="content" type="node" onChange="showContent"/>
+    <field id="content" type="node" onChange="showContent" />
   </interface>
   <children>
     <Poster 
@@ -18,6 +18,6 @@
       horizAlign="left"
       vertAlign="center"
       translation="[100,500]"
-      wrap="true"/>
+      wrap="true" />
   </children>
 </component>
