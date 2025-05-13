@@ -1,0 +1,94 @@
+import "../Services/NavigationService.bs"
+
+sub init()
+    m.background = m.top.findNode("background")
+    m.keyboard = m.top.findNode("keyboard")
+    m.searchResultsLabel = m.top.findNode("searchResultsLabel")
+    m.markupGrid = m.top.findNode("markupGrid")
+
+    m.keyboard.ObserveField("text", "onKeyboardTextChange")
+
+    m.navigationService = new NavigationService(m.top)
+end sub
+
+sub showContent(event as Object)
+    m.pokemonData = event.getData()
+    m.markupGrid.content = cloneContentNode(m.pokemonData)
+
+    m.background.color = "0x808080FF"
+    m.keyboard.setFocus(true)
+end sub
+
+sub onKeyboardTextChange(event as Object)
+    query = event.getData()
+    pokemonData = cloneContentNode(m.pokemonData)
+    m.searchResultsLabel.text = "Pokemons"
+    m.markupGrid.content = pokemonData
+
+    if query <> ""
+        results = CreateObject("roSGNode", "ContentNode")
+        childCount = pokemonData.getChildCount()
+
+        for i = 0 to childCount - 1
+            pokemon = pokemonData.getChild(i)
+
+            if pokemon <> invalid and pokemonContainsQuery(pokemon, query)
+                results.appendChild(pokemon)
+            end if
+        end for
+
+        m.markupGrid.content = results
+
+        if results.getChildCount() = 0
+            m.searchResultsLabel.text = "No results"
+        end if
+    end if
+end sub
+
+
+function pokemonContainsQuery(pokemon as Object, query as String) as Boolean
+    return LCase(pokemon.title).Instr(0, LCase(query)) <> -1 or LCase(pokemon.description).Instr(0, LCase(query)) <> -1
+end function
+
+function cloneContentNode(sourceNode as Object) as Object
+    if sourceNode = invalid then return invalid
+
+    cloneRoot = CreateObject("roSGNode", "ContentNode")
+    childCount = sourceNode.getChildCount()
+
+    for i = 0 to childCount - 1
+        original = sourceNode.getChild(i)
+
+        if original <> invalid
+            clone = CreateObject("roSGNode", "ItemContentNode")
+            keys = ["title","description", "id", "url", "image1080Url"]
+
+            for each key in keys
+                if original[key] <> invalid then clone[key] = original[key]
+            end for
+            
+            cloneRoot.appendChild(clone)
+        end if
+    end for
+
+    return cloneRoot
+end function
+
+function onKeyEvent(key as String, press as Boolean) as Boolean
+    handled = false
+    
+    if press
+        if key = "back"
+            m.navigationService.navigateBack()
+            handled = true
+        else if key = "right" and m.keyboard.keyGrid.hasFocus()
+            m.markupGrid.setFocus(true)
+            handled = true
+        else if key = "left" and m.markupGrid.hasFocus()
+            m.keyboard.setFocus(true)
+            handled = true
+        end if
+    end if
+    
+    return handled
+end function

@@ -7,7 +7,7 @@ sub init()
 end sub
 
 sub showContent(event as Object)
-    m.background.color = "#808080"
+    m.background.color = "0x808080FF"
     m.markupGrid.content = event.getData()
     m.markupGrid.setFocus(true)
 end sub
