@@ -1,8 +1,21 @@
 sub init()
     m.poster = m.top.findNode("itemPoster")
+    m.title = m.top.findNode("itemTitle")
+    m.description = m.top.findNode("itemDescription")
 end sub
 
 sub showContent(event as Object)
     data = event.getData()
-    m.poster.uri = data.url
+
+    if data <> invalid
+        if data.fhdposterurl <> invalid
+            m.poster.uri = data.fhdposterurl
+        end if
+        if data.title <> invalid
+            m.title.text = data.title
+        end if
+        if data.description <> invalid
+            m.description.text = data.description
+        end if
+    end if
 end sub

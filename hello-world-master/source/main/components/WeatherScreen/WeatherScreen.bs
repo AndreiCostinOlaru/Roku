@@ -1,0 +1,46 @@
+import "../Services/NavigationService.bs"
+
+sub init()
+    m.background = m.top.findNode("background")
+    m.weatherRowList = m.top.findNode("weatherRowList")
+    m.weatherRowList.observeField("itemSelected", "onWeatherItemSelected")
+    m.navigationService = new NavigationService(m.top)
+    loadWeatherData()
+    m.background.color = "#4bc2e6ff"
+    m.weatherRowList.setFocus(true)
+end sub
+
+sub loadWeatherData()
+    m.weatherTask = CreateObject("roSGNode", "GetWeatherData")
+    m.weatherTask.cityName = "Boston"
+    m.weatherTask.observeField("weatherContent", "onWeatherDataLoaded")
+    m.weatherTask.control = "RUN"
+end sub
+
+sub onWeatherDataLoaded(event as Object)
+    weatherContent = event.getData()
+    rowListRootContent = CreateObject("roSGNode","ContentNode")
+    rowListRootContent.appendChild(weatherContent)
+
+    if weatherContent <> invalid then m.weatherRowList.content = rowListRootContent
+end sub
+
+sub onWeatherItemSelected()
+    selectedItem = m.weatherRowList.content.getChild(m.weatherRowList.itemSelected)
+    if selectedItem <> invalid
+        m.navigationService.navigateTo("DescriptionScreen", selectedItem, m.weatherRowList)
+    end if
+end sub
+
+function onKeyEvent(key as String, press as Boolean) as Boolean
+    handled = false
+
+    if press
+        if key = "back"
+            m.navigationService.navigateBack()
+            handled = true
+        end if
+    end if
+    
+    return handled
+end function

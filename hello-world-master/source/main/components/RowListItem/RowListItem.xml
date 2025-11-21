@@ -10,5 +10,19 @@
       id="itemPoster" 
       width="450" 
       height="240" />
+    <Label 
+      id="itemTitle" 
+      translation="[10, 250]" 
+      width="430" 
+      height="40" 
+      font="font:MediumBoldSystemFont" 
+      color="0xFFFFFFFF" />
+    <Label 
+      id="itemDescription" 
+      translation="[10, 300]" 
+      width="430" 
+      height="40" 
+      font="font:SmallSystemFont" 
+      color="0xCCCCCCFF" />
   </children>
 </component>

@@ -1,0 +1,16 @@
+{
+  "name": "hello-world-master",
+  "version": "1.0.0",
+  "description": "## Use Case",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@rokucommunity/bslint": "^0.8.38",
+    "brighterscript": "^0.70.3"
+  }
+}

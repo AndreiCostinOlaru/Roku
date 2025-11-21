@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="WeatherScreen" extends="BaseScreen">
+    <script type="text/brightscript" uri="WeatherScreen.bs" />
+    <interface>
+        <field id="content" type="node" />
+    </interface>
+    <children>
+        <Rectangle 
+            id="background" 
+            width="1920" 
+            height="1080" />
+        <RowList 
+            id="weatherRowList" 
+            itemComponentName="RowListItem" 
+            translation="[100, 200]" 
+            itemSize="[1720, 500]"
+            rowItemSize="[[464, 350]]"
+            rowLabelOffset="[[0, 20]]" 
+            showRowLabel="[true]" />
+    </children>
+</component>

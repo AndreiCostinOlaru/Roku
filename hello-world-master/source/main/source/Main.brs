@@ -10,7 +10,7 @@ sub Main(args as Dynamic)
     inputObject.setMessagePort(m.port)
 
     scene = screen.CreateScene("MainScreen")
-    scene.backgroundUri = "pkg:/images/Dragon.jpg"
+    'scene.backgroundUri = "pkg:/images/Dragon.jpg"
     screen.show()
 
     keepAppAlive()

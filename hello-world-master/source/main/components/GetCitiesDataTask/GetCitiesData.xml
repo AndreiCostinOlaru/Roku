@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="GetCitiesData" extends="Task">
+    <interface>
+        <field id="citiesContent" type="node" />
+    </interface>
+    <script type="text/brightscript" uri="GetCitiesData.bs" />
+</component>

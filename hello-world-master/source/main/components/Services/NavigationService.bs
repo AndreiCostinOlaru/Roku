@@ -14,7 +14,8 @@ class NavigationService
 
     sub navigateTo(screenId as String, content as Object, parent as Object)
         screen = CreateObject("roSGNode", screenId)
-        screen.content = content
+
+        if content <> invalid then screen.content = content
         screen.parent = parent
         m.topNode.appendChild(screen)
         screen.setFocus(true)

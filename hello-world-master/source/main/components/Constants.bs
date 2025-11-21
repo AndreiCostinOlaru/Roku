@@ -1,5 +1,6 @@
 const POKEMON_URL = "https://my-json-server.typicode.com/bogdanterzea/pokemon-server/photos"
 const VIDEO_URL = "https://my-json-server.typicode.com/bogdanterzea/pokemon-server/photos"
+const WEATHER_BASE_URL = "https://ruby-weather-api-1.onrender.com"
 const CERTIFICATES_FILE = "common:/certs/ca-bundle.crt"
 const HEADER = "X-Roku-Reserved-Dev-Id"
 const PLACEHOLDER_URL = "pkg:/images/gray.png"

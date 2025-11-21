@@ -7,6 +7,7 @@ sub init()
   m.buttonVideo = m.top.findNode("buttonVideo")
   m.layoutGroup = m.top.findNode("layoutGroup")
   m.buttonMarkupGridScreen = m.top.findNode("buttonMarkupGridScreen")
+  m.buttonWeatherScreen = m.top.findNode("buttonWeatherScreen")
   m.navigationService = new NavigationService(m.top)
 
   initialSetup()
@@ -49,6 +50,7 @@ sub setUpObservedFields()
   m.getPokemonDataTask.ObserveField("itemContent", "onFetchPokemonData")
   m.getVideoData.ObserveField("itemContent", "onFetchVideoData")
   m.buttonMarkupGridScreen.observeField("buttonSelected", "onButtonMarkupGridScreenSelected")
+  m.buttonWeatherScreen.observeField("buttonSelected", "onButtonWeatherScreenSelected")
   m.rowListFocusTimer.ObserveField("fire", "onRowListTimer")
   m.imageRowList.ObserveField("rowItemFocused", "onRowListItemFocused")
 end sub
@@ -105,13 +107,22 @@ sub onBackFromDescriptionScreen()
   m.imageRowList.setFocus(true)
 end sub
 
-sub onbuttonMarkupGridScreenSelected()
+sub onButtonMarkupGridScreenSelected()
   m.navigationService.navigateTo("MarkupGridScreen", m.markupGridData, m.buttonMarkupGridScreen)
 end sub
 
 sub onBackFromMarkupGridScreen()
   m.top.removeChild(m.newMarkupGridScreen)
   m.buttonMarkupGridScreen.setFocus(true)
+end sub
+
+sub onButtonWeatherScreenSelected()
+  m.navigationService.navigateTo("WeatherScreen", invalid, m.buttonWeatherScreen)
+end sub
+
+sub onBackFromWeatherScreen()
+  m.top.removeChild(m.newWeatherScreen)
+  m.buttonWeatherScreen.setFocus(true)
 end sub
 
 sub onMainSceneSuspend(args as dynamic)
@@ -165,9 +176,15 @@ function onKeyEvent(key as String, press as Boolean) as Boolean
     else if key = "right" and m.buttonVideo.hasFocus()
       handled = true
       m.buttonMarkupGridScreen.setFocus(true)
+    else if key = "right" and m.buttonMarkupGridScreen.hasFocus()
+      handled = true
+      m.buttonWeatherScreen.setFocus(true)
     else if key = "left" and m.buttonMarkupGridScreen.hasFocus()
       handled = true
       m.buttonVideo.setFocus(true)
+    else if key = "left" and m.buttonWeatherScreen.hasFocus()
+      handled = true
+      m.buttonMarkupGridScreen.setFocus(true)
     end if
   end if
 
@@ -197,7 +214,7 @@ function createPosterPlaceholder() as Object
 end function
 
 function isAnyButtonFocused() as Boolean
-  return m.buttonVideo.hasFocus() or m.buttonMarkupGridScreen.hasFocus()
+  return m.buttonVideo.hasFocus() or m.buttonMarkupGridScreen.hasFocus() or m.buttonWeatherScreen.hasFocus()
 end function
 
 function createTimer(duration as integer, repeat as boolean)

@@ -8,7 +8,11 @@ end sub
 
 sub showContent(event as Object)
     data = event.getData()
-    m.poster.uri = data.image1080Url
+    if data.image1080Url <> invalid and not data.image1080Url.instr(".png") > -1
+        m.poster.uri = data.image1080Url
+    else
+        m.poster.uri = "pkg:/images/gray.png"
+    end if
     m.label.text = data.description
 end sub
 

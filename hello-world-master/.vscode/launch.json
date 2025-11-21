@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Deploy to Roku",
+            "type": "brightscript",
+            "request": "launch",
+            "host": "192.168.0.117",
+            "password": "rokudev",
+            "rootDir": "${workspaceFolder}/source/main",
+            "files": [
+                "source/**/*",
+                "components/**/*",
+                "images/**/*",
+                "manifest"
+            ]
+        }
+    ]
+}
