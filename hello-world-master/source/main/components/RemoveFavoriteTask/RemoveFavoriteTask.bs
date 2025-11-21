@@ -1,0 +1,34 @@
+import "../Constants.bs"
+
+sub init()
+    m.top.functionName = "removeFavorite"
+end sub
+
+sub removeFavorite()
+    city = m.top.city
+    if city <> invalid and city <> ""
+        url = WEATHER_BASE_URL + "/favorites/" + city
+        executeDeleteRequest(url)
+    end if
+end sub
+
+function executeDeleteRequest(url as String) as Object
+    port = CreateObject("roMessagePort")
+    request = setUpHttpRequest(url)
+    request.setMessagePort(port)
+    request.SetRequest("DELETE")
+    request.AsyncGetToString()
+    msg = wait(0, port)
+    return msg
+end function
+
+function setUpHttpRequest(url as String) as Object
+    request = CreateObject("roUrlTransfer")
+    request.setMessagePort(CreateObject("roMessagePort"))
+    request.SetUrl(url)
+    request.SetCertificatesFile(CERTIFICATES_FILE)
+    request.AddHeader(HEADER, "")
+    request.InitClientCertificates()
+    
+    return request
+end function

@@ -1,10 +1,17 @@
 import "../Services/NavigationService.bs"
+import "../Constants.bs"
 
 sub init()
     m.poster = m.top.findNode("itemPoster")
     m.label = m.top.findNode("description")
     m.backgroundVideo = m.top.findNode("backgroundVideo")
+    m.favoriteIcon = m.top.findNode("favoriteIcon")
     m.navigationService = new NavigationService(m.top)
+    m.currentTitle = ""
+    m.favorites = []
+    m.isFavorite = false
+    m.favoriteIcon.setFocus(false)
+    m.favoriteIcon.observeField("focusedChild", "onFavoriteIconFocusChanged")
 end sub
 
 sub showContent(event as Object)
@@ -17,8 +24,12 @@ sub showContent(event as Object)
     end if
     
     m.label.text = data.description <> "" ? data.description : data.title
+    m.currentTitle = data.title
     
-    if data.title <> invalid then fetchWeatherVideo(data.title)
+    if data.title <> invalid 
+        fetchWeatherVideo(data.title)
+        fetchFavorites()
+    end if
 end sub
 
 sub fetchWeatherVideo(city as String)
@@ -37,12 +48,82 @@ sub onWeatherVideoReceived(event as Object)
     end if
 end sub
 
+sub fetchFavorites()
+    favoritesTask = CreateObject("roSGNode", "GetFavoritesData")
+    favoritesTask.observeField("favoritesContent", "onFavoritesReceived")
+    favoritesTask.control = "RUN"
+end sub
+
+sub onFavoritesReceived(event as Object)
+    favoritesData = event.getData()
+    if favoritesData <> invalid and favoritesData.favorites <> invalid
+        m.favorites = favoritesData.favorites
+        updateFavoriteIcon()
+    end if
+end sub
+
+sub updateFavoriteIcon()
+    m.isFavorite = false
+    for each favorite in m.favorites
+        if favorite = m.currentTitle
+            m.isFavorite = true
+            exit for
+        end if
+    end for
+    
+    if m.isFavorite
+        m.favoriteIcon.uri = "pkg:/images/remove.jpg"
+    else
+        m.favoriteIcon.uri = "pkg:/images/add.jpg"
+    end if
+    print "Icon updated to: ", m.favoriteIcon.uri, " isFavorite: ", m.isFavorite
+end sub
+
+sub onFavoriteIconFocusChanged(event as Object)
+    if m.favoriteIcon.hasFocus()
+        m.favoriteIcon.scale = [1.2, 1.2]
+    else
+        m.favoriteIcon.scale = [1.0, 1.0]
+    end if
+end sub
+
+sub toggleFavorite()
+    if m.isFavorite
+        removeFavorite()
+    else
+        addFavorite()
+    end if
+end sub
+
+sub addFavorite()
+    addTask = CreateObject("roSGNode", "AddFavoriteTask")
+    addTask.city = m.currentTitle
+    addTask.control = "RUN"
+    m.isFavorite = true
+    m.favoriteIcon.uri = "pkg:/images/remove.jpg"
+end sub
+
+sub removeFavorite()
+    removeTask = CreateObject("roSGNode", "RemoveFavoriteTask")
+    removeTask.city = m.currentTitle
+    removeTask.control = "RUN"
+    m.isFavorite = false
+    m.favoriteIcon.uri = "pkg:/images/add.jpg"
+end sub
+
 function onKeyEvent(key as String, press as Boolean) as Boolean
     handled = false
     
     if press
         if key ="back"
             m.navigationService.navigateBack()
+            handled = true
+        else if key="right"
+            m.favoriteIcon.setFocus(true)
+        else if key="left" and m.favoriteIcon.hasFocus()
+            m.label.setFocus(true)
+        else if key="OK" and m.favoriteIcon.hasFocus()
+            toggleFavorite()
             handled = true
         end if
     end if

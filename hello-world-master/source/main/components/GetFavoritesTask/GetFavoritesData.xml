@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<component name="GetFavoritesData" extends="Task">
+  <script type="text/brightscript" uri="GetFavoritesData.bs"/>
+  <interface>
+    <field id="favoritesContent" type="node"/>
+  </interface>
+</component>

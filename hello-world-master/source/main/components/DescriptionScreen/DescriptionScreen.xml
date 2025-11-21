@@ -15,14 +15,22 @@
       width="1920" 
       height="1080"
       visible="false" />
-    <Label 
-      id="description"
-      height="500"
-      width="1720"
-      font="font:MediumBoldSystemFont"
-      horizAlign="left"
-      vertAlign="center"
-      translation="[100,500]"
-      wrap="true"/>
+    <Group translation="[100,500]">
+      <Label 
+        id="description"
+        height="500"
+        width="1620"
+        font="font:MediumBoldSystemFont"
+        horizAlign="left"
+        vertAlign="center"
+        wrap="true"/>
+      <Poster 
+        id="favoriteIcon"
+        width="80"
+        height="80"
+        translation="[1640,210]"
+        uri="pkg:/images/gray.png"
+        scaleRotateCenter="[40,40]"/>
+    </Group>
   </children>
 </component>

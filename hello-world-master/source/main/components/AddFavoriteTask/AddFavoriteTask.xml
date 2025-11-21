@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<component name="AddFavoriteTask" extends="Task">
+  <script type="text/brightscript" uri="AddFavoriteTask.bs"/>
+  <interface>
+    <field id="city" type="string"/>
+    <field id="result" type="node"/>
+  </interface>
+</component>
