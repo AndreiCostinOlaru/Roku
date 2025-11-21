@@ -3,17 +3,38 @@ import "../Services/NavigationService.bs"
 sub init()
     m.poster = m.top.findNode("itemPoster")
     m.label = m.top.findNode("description")
+    m.backgroundVideo = m.top.findNode("backgroundVideo")
     m.navigationService = new NavigationService(m.top)
 end sub
 
 sub showContent(event as Object)
     data = event.getData()
+
     if data.image1080Url <> invalid and not data.image1080Url.instr(".png") > -1
         m.poster.uri = data.image1080Url
     else
         m.poster.uri = "pkg:/images/gray.png"
     end if
-    m.label.text = data.description
+    
+    m.label.text = data.description <> "" ? data.description : data.title
+    
+    if data.title <> invalid then fetchWeatherVideo(data.title)
+end sub
+
+sub fetchWeatherVideo(city as String)
+    weatherVideoTask = CreateObject("roSGNode", "GetWeatherVideoData")
+    weatherVideoTask.city = city
+    weatherVideoTask.observeField("videoContent", "onWeatherVideoReceived")
+    weatherVideoTask.control = "RUN"
+end sub
+
+sub onWeatherVideoReceived(event as Object)
+    videoContent = event.getData()
+    if videoContent <> invalid
+        m.backgroundVideo.content = videoContent
+        m.backgroundVideo.visible = true
+        m.backgroundVideo.control = "play"
+    end if
 end sub
 
 function onKeyEvent(key as String, press as Boolean) as Boolean

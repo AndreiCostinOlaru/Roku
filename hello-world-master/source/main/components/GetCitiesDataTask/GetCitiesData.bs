@@ -44,8 +44,8 @@ function populateCitiesItems(citiesJson as Object) as Object
     citiesContent = CreateObject("roSGNode","ContentNode")
     citiesContent.TITLE = "Cities"
 
-    if citiesJson <> invalid and type(citiesJson) = "roArray"
-        for each city in citiesJson
+    if citiesJson <> invalid and type(citiesJson.cities) = "roArray"
+        for each city in citiesJson.cities
             cityChild = createCityItem(city)
             citiesContent.appendChild(cityChild)
         end for

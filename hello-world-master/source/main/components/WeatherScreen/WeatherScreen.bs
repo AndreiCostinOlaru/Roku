@@ -5,28 +5,67 @@ sub init()
     m.weatherRowList = m.top.findNode("weatherRowList")
     m.weatherRowList.observeField("itemSelected", "onWeatherItemSelected")
     m.navigationService = new NavigationService(m.top)
-    loadWeatherData()
+    m.cities = []
+    m.weatherData = []
+    m.currentCityIndex = 0
+    loadCitiesData()
     m.background.color = "#4bc2e6ff"
     m.weatherRowList.setFocus(true)
 end sub
 
-sub loadWeatherData()
+sub loadCitiesData()
+    m.citiesTask = CreateObject("roSGNode", "GetCitiesData")
+    m.citiesTask.observeField("citiesContent", "onCitiesDataLoaded")
+    m.citiesTask.control = "RUN"
+end sub
+
+sub onCitiesDataLoaded(event as Object)
+    citiesContent = event.getData()
+    if citiesContent <> invalid and citiesContent.getChildCount() > 0
+        for i = 0 to citiesContent.getChildCount() - 1
+            cityItem = citiesContent.getChild(i)
+            m.cities.push(cityItem.title)
+        end for
+        loadWeatherForAllCities()
+    end if
+end sub
+
+sub loadWeatherForAllCities()
+    if m.cities.count() > 0
+        loadWeatherForCity(m.cities[0])
+    end if
+end sub
+
+sub loadWeatherForCity(cityName as String)
     m.weatherTask = CreateObject("roSGNode", "GetWeatherData")
-    m.weatherTask.cityName = "Boston"
+    m.weatherTask.cityName = cityName
     m.weatherTask.observeField("weatherContent", "onWeatherDataLoaded")
     m.weatherTask.control = "RUN"
 end sub
 
 sub onWeatherDataLoaded(event as Object)
     weatherContent = event.getData()
-    rowListRootContent = CreateObject("roSGNode","ContentNode")
-    rowListRootContent.appendChild(weatherContent)
+    if weatherContent <> invalid and weatherContent.title <> "" then m.weatherData.push(weatherContent)
+    
+    m.currentCityIndex++
+    if m.currentCityIndex < m.cities.count()
+        loadWeatherForCity(m.cities[m.currentCityIndex])
+    else
+        displayAllWeatherData()
+    end if
+end sub
 
-    if weatherContent <> invalid then m.weatherRowList.content = rowListRootContent
+sub displayAllWeatherData()
+    rowListRootContent = CreateObject("roSGNode","ContentNode")
+    for each weatherContent in m.weatherData
+        rowListRootContent.appendChild(weatherContent)
+    end for
+    m.weatherRowList.content = rowListRootContent
 end sub
 
 sub onWeatherItemSelected()
     selectedItem = m.weatherRowList.content.getChild(m.weatherRowList.itemSelected)
+
     if selectedItem <> invalid
         m.navigationService.navigateTo("DescriptionScreen", selectedItem, m.weatherRowList)
     end if

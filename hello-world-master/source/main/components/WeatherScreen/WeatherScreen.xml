@@ -13,7 +13,7 @@
             id="weatherRowList" 
             itemComponentName="RowListItem" 
             translation="[100, 200]" 
-            itemSize="[1720, 500]"
+            itemSize="[1720, 1000]"
             rowItemSize="[[464, 350]]"
             rowLabelOffset="[[0, 20]]" 
             showRowLabel="[true]" />

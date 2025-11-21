@@ -47,9 +47,10 @@ end function
 
 function populateWeatherItems(weatherJson as Object) as Object
     weatherContent = CreateObject("roSGNode","ContentNode")
-    weatherContent.TITLE = weatherJson.location
 
     if weatherJson <> invalid and weatherJson.forecast <> invalid
+        weatherContent.TITLE = weatherJson.location
+
         for each dayData in weatherJson.forecast
             weatherChild = createWeatherItem(dayData, weatherJson.location)
             weatherContent.appendChild(weatherChild)
